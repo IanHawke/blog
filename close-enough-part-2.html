@@ -259,6 +259,15 @@ Ian Hawke            </a>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>This is the second in a series of posts on testing scientific software. For this to make sense, you&#39;ll need to have skimmed <a href="http://ianhawke.github.io/blog/close-enough.html">the motivation and background</a>. The <a href="http://ianhawke.github.io/blog/close-enough-part-1.html">first in the series</a> assumed we only cared about the answer, and whether we&#39;d implemented the expected algorithm wasn&#39;t important.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>$$
 \newcommand{\dt}{\Delta t}
 \newcommand{\udt}[1]{u^{({#1})}(T)}
@@ -290,7 +299,7 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>So now we can apply the same Richardson extrapolation tricks to our measured slope. If the measured slope is denoted $\sm{\dt}$ then we can use Richardson extrapolation as before to compute</p>
+<p>In the <a href="http://ianhawke.github.io/blog/close-enough-part-1.html">first post in the series</a> we applied Richardson extrapolation to the solution, getting an extrapolated answer and an interval within which we expected the true solution to lie. Now we can apply the same Richardson extrapolation tricks to our measured slope. If the measured slope is denoted $\sm{\dt}$ then we can use Richardson extrapolation as before to compute</p>
 <p>$$
 \begin{align}
   s_R &amp;= 2\sm{\dt} - \sm{2\dt}, \\ E_R &amp; = s_R - \sm{\dt}.
@@ -318,6 +327,15 @@ $$</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We first need the code implementing Euler&#39;s method <a href="http://nbviewer.ipython.org/github/numerical-mooc/numerical-mooc/blob/master/lessons/01_phugoid/01_03_PhugoidFullModel.ipynb">the full phugoid model notebook</a>.</p>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -407,6 +425,15 @@ $$</p>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We then construct a sequence of solutions in order to perform Richardson extrapolation, exactly as in the <a href="http://ianhawke.github.io/blog/close-enough-part-1.html">first post</a>. Here we need four, rather than three, solutions, so that we can compute the slope at two different resolutions.</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
@@ -429,6 +456,15 @@ $$</p>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can now measure the convergence rate slope twice:</p>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -553,7 +589,7 @@ $$</p>
   | \sm{\dt/2} - s_e | \le \frac{2}{3} | \sm{\dt} - s_e |;
 \end{equation}
 $$</p>
-<p>that is, the error must go down by at least a factor of $2/3$ when the step size is cut in half.</p>
+<p>that is, the error must go down by at least a factor of $1/3$ when the step size is cut in half.</p>
 <p>So, if we fix $s_e=1$ (as for Euler&#39;s method), we can see the <em>upper</em> bound on $\sm{\dt/2}$ given $s_m = 1.023$ is:</p>
 </div>
 </div>
@@ -565,7 +601,8 @@ $$</p>
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">s_e</span> <span class="o">=</span> <span class="mf">1.0</span>
 <span class="n">s_mdthalf_max</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">s_m</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">s_e</span><span class="p">)</span><span class="o">/</span><span class="mf">3.0</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;Upper bound when s_e=1 and s_m (coarse resolution)=1.023: {:.7f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s_mdthalf_max</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Upper bound when s_e=1 and s_m (coarse resolution)=1.023: &quot;</span>
+      <span class="s">&quot;{:.7f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s_mdthalf_max</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -848,7 +885,7 @@ gg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If we want the algorithm to behave in the way expected of Euler&#39;s method, then measuring a single convergence rate is useful but not sufficient. Instead we must measure the convergence rate twice, once with base timestep $\dt$ and once with base timestep $\dt/2$. The difference between the measured slope $\sm{\dt}$ and the expected slope $s_e=1$ must go down by at least $2/3$ when the timestep is reduced to $\dt/2$.</p>
+<p>If we want the algorithm to behave in the way expected of Euler&#39;s method, then measuring a single convergence rate is useful but not sufficient. Instead we must measure the convergence rate twice, once with base timestep $\dt$ and once with base timestep $\dt/2$. The difference between the measured slope $\sm{\dt}$ and the expected slope $s_e=1$ must go down by at least $1/3$ when the timestep is reduced to $\dt/2$.</p>
 </div>
 </div>
 </div></p>
