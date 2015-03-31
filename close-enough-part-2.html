@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en"
+>
+<head>
+    <title>Close Enough Part 2 - Ian Hawke</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+<style type="text/css">
+
+/*some stuff for output/input prompts*/
+div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.cell.selected{border-radius:4px;border:thin #ababab solid}
+div.cell.edit_mode{border-radius:4px;border:thin #008000 solid}
+div.cell{width:100%;padding:5px 5px 5px 0;margin:0;outline:none}
+div.prompt{min-width:11ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}
+@media (max-width:480px){div.prompt{text-align:left}}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}
+div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;line-height:1.21429em}
+div.prompt:empty{padding-top:0;padding-bottom:0}
+div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:horizontal;-moz-box-align:stretch;display:box;box-orient:horizontal;box-align:stretch;}
+div.inner_cell{width:90%;}
+div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;}
+div.input_prompt{color:navy;border-top:1px solid transparent;}
+div.output_wrapper{margin-top:5px;position:relative;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
+div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:4px;-webkit-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);-moz-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);}
+div.output_collapsed{margin:0px;padding:0px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
+div.out_prompt_overlay{height:100%;padding:0px 0.4em;position:absolute;border-radius:4px;}
+div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000000;-moz-box-shadow:inset 0 0 1px #000000;box-shadow:inset 0 0 1px #000000;background:rgba(240, 240, 240, 0.5);}
+div.output_prompt{color:darkred;}
+
+a.anchor-link:link{text-decoration:none;padding:0px 20px;visibility:hidden;}
+h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anchor-link,h5:hover .anchor-link,h6:hover .anchor-link{visibility:visible;}
+/* end stuff for output/input prompts*/
+
+
+.highlight-ipynb .hll { background-color: #ffffcc }
+.highlight-ipynb  { background: #f8f8f8; }
+.highlight-ipynb .c { color: #408080; font-style: italic } /* Comment */
+.highlight-ipynb .err { border: 1px solid #FF0000 } /* Error */
+.highlight-ipynb .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight-ipynb .o { color: #666666 } /* Operator */
+.highlight-ipynb .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight-ipynb .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight-ipynb .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight-ipynb .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight-ipynb .gd { color: #A00000 } /* Generic.Deleted */
+.highlight-ipynb .ge { font-style: italic } /* Generic.Emph */
+.highlight-ipynb .gr { color: #FF0000 } /* Generic.Error */
+.highlight-ipynb .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight-ipynb .gi { color: #00A000 } /* Generic.Inserted */
+.highlight-ipynb .go { color: #888888 } /* Generic.Output */
+.highlight-ipynb .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight-ipynb .gs { font-weight: bold } /* Generic.Strong */
+.highlight-ipynb .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight-ipynb .gt { color: #0044DD } /* Generic.Traceback */
+.highlight-ipynb .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight-ipynb .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight-ipynb .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight-ipynb .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight-ipynb .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight-ipynb .kt { color: #B00040 } /* Keyword.Type */
+.highlight-ipynb .m { color: #666666 } /* Literal.Number */
+.highlight-ipynb .s { color: #BA2121 } /* Literal.String */
+.highlight-ipynb .na { color: #7D9029 } /* Name.Attribute */
+.highlight-ipynb .nb { color: #008000 } /* Name.Builtin */
+.highlight-ipynb .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight-ipynb .no { color: #880000 } /* Name.Constant */
+.highlight-ipynb .nd { color: #AA22FF } /* Name.Decorator */
+.highlight-ipynb .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight-ipynb .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight-ipynb .nf { color: #0000FF } /* Name.Function */
+.highlight-ipynb .nl { color: #A0A000 } /* Name.Label */
+.highlight-ipynb .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight-ipynb .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight-ipynb .nv { color: #19177C } /* Name.Variable */
+.highlight-ipynb .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight-ipynb .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight-ipynb .mf { color: #666666 } /* Literal.Number.Float */
+.highlight-ipynb .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight-ipynb .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight-ipynb .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight-ipynb .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight-ipynb .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight-ipynb .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight-ipynb .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight-ipynb .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight-ipynb .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight-ipynb .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight-ipynb .sx { color: #008000 } /* Literal.String.Other */
+.highlight-ipynb .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight-ipynb .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight-ipynb .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight-ipynb .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight-ipynb .vc { color: #19177C } /* Name.Variable.Class */
+.highlight-ipynb .vg { color: #19177C } /* Name.Variable.Global */
+.highlight-ipynb .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight-ipynb .il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+div.entry-content {
+  overflow: visible;
+  padding: 8px;
+}
+.input_area {
+  padding: 0.2em;
+}
+
+a.heading-anchor {
+ white-space: normal;
+}
+
+.rendered_html
+code {
+ font-size: .8em;
+}
+
+pre.ipynb {
+  color: black;
+  background: #f7f7f7;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0px;
+  font-size: 13px;
+}
+
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
+img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
+</style>
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<script type="text/javascript">
+init_mathjax = function() {
+    if (window.MathJax) {
+        // MathJax loaded
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+            },
+            displayAlign: 'left', // Change this to 'center' to center equations.
+            "HTML-CSS": {
+                styles: {'.MathJax_Display': {"margin": 0}}
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }
+}
+init_mathjax();
+</script>
+
+<link rel="canonical" href="http://IanHawke.github.io/blog/close-enough-part-2.html">
+
+        <meta name="author" content="Ian Hawke" />
+        <meta name="keywords" content="Python" />
+        <meta name="description" content="The second in the series on testing, this shows tighter constraints on the behaviour of the algorithm, but at a cost: one number is not enough." />
+
+        <meta property="og:site_name" content="Ian Hawke" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Close Enough Part 2"/>
+        <meta property="og:url" content="http://IanHawke.github.io/blog/close-enough-part-2.html"/>
+        <meta property="og:description" content="The second in the series on testing, this shows tighter constraints on the behaviour of the algorithm, but at a cost: one number is not enough."/>
+        <meta property="article:published_time" content="2015-03-27" />
+            <meta property="article:section" content="Testing" />
+            <meta property="article:tag" content="Python" />
+            <meta property="article:author" content="Ian Hawke" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://IanHawke.github.io/blog/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://IanHawke.github.io/blog/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://IanHawke.github.io/blog/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://IanHawke.github.io/blog/theme/css/style.css" type="text/css"/>
+
+        <link href="http://IanHawke.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Ian Hawke ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://IanHawke.github.io/blog/" class="navbar-brand">
+Ian Hawke            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://IanHawke.github.io/blog/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://IanHawke.github.io/blog/close-enough-part-2.html"
+                       rel="bookmark"
+                       title="Permalink to Close Enough Part 2">
+                        Close Enough Part 2
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-03-27T00:00:00+00:00"> Fri 27 March 2015</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://IanHawke.github.io/blog/tag/python.html">Python</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <!-- the next line is the key to include the notebook here: -->
+
+<p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
+\newcommand{\dt}{\Delta t}
+\newcommand{\udt}[1]{u^{({#1})}(T)}
+\newcommand{\sm}[1]{s_m^{({#1})}}
+$$
+Let&#39;s suppose that instead of caring about the answer $u$ we care about the algorithm behaving in the right fashion, $\udt{\dt} = u(T) + c_1 \dt^{s_e}$.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Given three pieces of data we can measure the slope:</p>
+<p>$$
+\begin{align}
+  s_m &amp; = \log_2 \left| \frac{\udt{4\dt}-\udt{2\dt}}{\udt{2\dt}-\udt{\dt}} \right| \\ 
+  &amp; = \log_2 \left| \frac{u(T) + c_1 4^{s_e} \dt^{s_e} - u(T) + c_1 2^{s_e} \dt^{s_e} + {\cal O}(\dt^{s_e+1})}{u(T) + c_1 2^{s_e} \dt^{s_e} - u(T) + c_1 \dt^{s_e} + {\cal O}(\dt^{s_e+1)}} \right| \\
+  &amp; = \log_2 \left| 2^{s_e} + {\cal O}(\dt) \right| \\
+  &amp; = s_e + {\cal O}(\dt).
+\end{align}
+$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So now we can apply the same Richardson extrapolation tricks to our measured slope. If the measured slope is denoted $\sm{\dt}$ then we can use Richardson extrapolation as before to compute</p>
+<p>$$
+\begin{align}
+  s_R &amp;= 2\sm{\dt} - \sm{2\dt}, \\ E_R &amp; = s_R - \sm{\dt}.
+\end{align}
+$$</p>
+<p>We then state that our algorithm is <em>close enough</em> to correct if $s_e$ lies in the interval $s_R \pm E_R$.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">ceil</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;serif&#39;</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="c"># model parameters:</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span>      <span class="c"># gravity in m s^{-2}</span>
+<span class="n">v_t</span> <span class="o">=</span> <span class="mf">30.0</span>   <span class="c"># trim velocity in m s^{-1}   </span>
+<span class="n">C_D</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mf">40.</span>  <span class="c"># drag coefficient --- or D/L if C_L=1</span>
+<span class="n">C_L</span> <span class="o">=</span> <span class="mf">1.0</span>    <span class="c"># for convenience, use C_L = 1</span>
+
+<span class="c">### set initial conditions ###</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="n">v_t</span>     <span class="c"># start at the trim velocity (or add a delta)</span>
+<span class="n">theta0</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c"># initial angle of trajectory</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">0.0</span>     <span class="c"># horizotal position is arbitrary</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="mf">1000.0</span>  <span class="c"># initial altitude</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the right-hand side of the phugoid system of equations.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    u : array of float</span>
+<span class="sd">        array containing the solution at time n.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dudt : array of float</span>
+<span class="sd">        array containing the RHS given u.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">v</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">g</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">C_D</span><span class="o">/</span><span class="n">C_L</span><span class="o">*</span><span class="n">g</span><span class="o">/</span><span class="n">v_t</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+                      <span class="o">-</span><span class="n">g</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">/</span><span class="n">v</span> <span class="o">+</span> <span class="n">g</span><span class="o">/</span><span class="n">v_t</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="p">,</span>
+                      <span class="n">v</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span>
+                      <span class="n">v</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">euler_step</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the solution at the next time-step using Euler&#39;s method.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    u : array of float</span>
+<span class="sd">        solution at the previous time-step.</span>
+<span class="sd">    f : function</span>
+<span class="sd">        function to compute the right hand-side of the system of equation.</span>
+<span class="sd">    dt : float</span>
+<span class="sd">        time-increment.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    u_n_plus_1 : array of float</span>
+<span class="sd">        approximate solution at the next time step.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">return</span> <span class="n">u</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">T</span> <span class="o">=</span> <span class="mf">100.0</span>
+<span class="n">dt_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.001</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)])</span>
+<span class="n">v_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">dt_values</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dt_values</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v0</span><span class="p">,</span> <span class="n">theta0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">euler_step</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">f</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="n">v_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">s_m</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">s_m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">((</span><span class="n">v_values</span><span class="p">[</span><span class="mi">2</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">v_values</span><span class="p">[</span><span class="mi">1</span><span class="o">+</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">v_values</span><span class="p">[</span><span class="mi">1</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">v_values</span><span class="p">[</span><span class="mi">0</span><span class="o">+</span><span class="n">i</span><span class="p">])))</span> <span class="o">/</span> <span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Measured convergence rate (base dt {}) is {:.7g}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dt_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s_m</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Measured convergence rate (base dt 0.0005) is 1.011621.
+Measured convergence rate (base dt 0.001) is 1.023266.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We then use Richardson extrapolation applied to the measured convergence rates (at finite resolution) to get the &quot;<em>actual</em>&quot; convergence rate and its accuracy:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">s_exact</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">s_m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">s_m</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">error_e</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">s_exact</span> <span class="o">-</span> <span class="n">s_m</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;The convergence rate lies in the interval [{:.7g},{:.7g}]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">s_exact</span><span class="o">-</span><span class="n">error_e</span><span class="p">,</span> <span class="n">s_exact</span><span class="o">+</span><span class="n">error_e</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+The convergence rate lies in the interval [0.9883297,1.011621]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We see that $\sm{\dt} \simeq 1.023$ is <em>close enough</em> when $\sm{\dt/2} \simeq 1.012$, as the interval is consistent with $s_e=1$.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Finding-the-limits">Finding the limits<a class="anchor-link" href="#Finding-the-limits">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once again, we want to know what the limiting values are. In this case we&#39;re interested in fixing $s_e$ and $\sm{\dt}$, and finding the value of $\sm{\dt/2}$ that is close enough.</p>
+<p>So the model we&#39;ll use is that $s_m = s_e + c_1 \dt$, as above, so we need</p>
+<p>$$
+\begin{equation}
+  2 \sm{\dt/2} - \sm{\dt} - | \sm{\dt/2} - \sm{\dt} | \le s_e \le 2 \sm{\dt/2} - \sm{\dt} + | \sm{\dt/2} - \sm{\dt} |.
+\end{equation}
+$$</p>
+<p>In the case where $\sm{\dt/2} &lt; \sm{\dt}$  this gives</p>
+<p>$$
+\begin{equation}
+  3 \sm{\dt/2} - 2\sm{\dt} \le s_e \le \sm{\dt/2} \quad \implies \quad \sm{\dt/2} \le \tfrac{1}{3} \left( 2 \sm{\dt} + s_e \right).
+\end{equation}
+$$</p>
+<p>In the case where $\sm{\dt/2} &gt; \sm{\dt}$  this gives</p>
+<p>$$
+\begin{equation}
+  \sm{\dt/2} \le s_e \le 3 \sm{\dt/2} - 2 \sm{\dt} \quad \implies \quad \sm{\dt/2} \ge \tfrac{1}{3} \left( 2 \sm{\dt} + s_e \right).
+\end{equation}
+$$</p>
+<p>We can write this in terms of the <em>error</em> in the slope as</p>
+<p>$$
+\begin{equation}
+  | \sm{\dt/2} - s_e | \le \frac{2}{3} | \sm{\dt} - s_e |;
+\end{equation}
+$$</p>
+<p>that is, the error must go down by at least a factor of $2/3$ when the step size is cut in half.</p>
+<p>So, if we fix $s_e=1$ (as for Euler&#39;s method), we can see the <em>upper</em> bound on $\sm{\dt/2}$ given $s_m = 1.023$ is:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">s_e</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">s_mdthalf_max</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">s_m</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">s_e</span><span class="p">)</span><span class="o">/</span><span class="mf">3.0</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Upper bound when s_e=1 and s_m (coarse resolution)=1.023: {:.7f}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s_mdthalf_max</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Upper bound when s_e=1 and s_m (coarse resolution)=1.023: 1.0155107.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In general, for Euler&#39;s method, the bound varies linearly:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">s_m_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">bound</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">s_m_values</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span><span class="o">/</span><span class="mf">3.0</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">s_m_values</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">s_m_values</span><span class="p">),</span> <span class="n">bound</span><span class="p">,</span>
+                    <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;green&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c">#pyplot.ylim(1.0, 2.5)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">r&quot;$s_m^{(\Delta t)}$&quot;</span><span class="p">)</span>
+<span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">r&quot;$s_m^{(\Delta t / 2)}$&quot;</span><span class="p">);</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgQAAAGWCAYAAAAHRJtDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAALEgAACxIB0t1+/AAAIABJREFUeJzt3X+cXXV95/HXBwgIBIWKQECSIavA8ighJq2uwLYhGFzX
+tigUtYI/Sq0gVcCgFa3dpFotVFy626rFLoENtkUQUPwJghncgooUkCQgoSUhGAIhMUuGsGRC5rN/
+3DN4czM/79w799x7X8/HYx4zc+753nzmMMx933M+5/uNzESSJHW33VpdgCRJaj0DgSRJMhBIkiQD
+gSRJwkAgSZIwEEiSJEocCCJiWkR8LyIGJvAcfxkRAxHxnkbWJklSpyllIIiI04A7gR6grokSIuKV
+wMJivJMtSJI0glIGAuAiYD7wYyDqfI7PArdPYLwkSV2jrIHgxMxcU+/giJgLHA/8bcMqkiSpg5Uy
+EOTE51P+PPAJoL8B5UiS1PFKGQgmIiLeAuyVmde1uhZJktrFHq0uoJEiYgpwCXB2q2uRJKmddNoZ
+gg8AKzLzrlYXIklSO+mYMwQRsT9wMfBbQz08zBhvR5QkdZ3M3OV1sZPOEPwn4AXg+oi4LyLuA/6h
+eOxTxbZP1g7KzLb6WLRoUctr6PQPj7HHuFM+PM4e46E+htMOZwiGrT4iDgY2ZMX3gOk1j/82sAz4
+88xc2twyJUlqX+1whmC40/0nAE8AXxjDWCcnkiRpBKUMBBHxxYhYDZwOZESsjohHi7sIBvUBm6mE
+gtrxhxTj/5nKGYbLiud47WTU30zz5s1rdQkdz2PcfB7jyeFxbr5OOsYx0vWEThcR2c0/vySp+0QE
+2eFNhZIkqU4GAkmSZCCQJEkGAkmShIFAkiRhIJAkSRgIJEkSBgJJkoSBQJIkYSCQJEkYCCRJEgYC
+SZKEgUCSJGEgkCRJGAgkSRIGAkmShIFAkiRhIJAkSRgIJEkSBgJJkoSBQJIkAXu0ugBJktR8Dz/8
+MLfdcduwjxsIJEnqYFu2bOFr3/gavSt7Ydvw+xkIJEnqQAMDA/zk7p9wzc3XsO2gbfQs6OEXt/xi
+2P0NBJIkdZj169ez9LqlrNy0koNfezAH7X/QqGMMBJIkdYj+/n5uue0Wbuq9iT1fvSdHzDqCiBjT
+WAOBJEkd4OGHH2bJV5fw1JSnOPSkQ9lz7z3HNd5AIElSG3uxaXBFLwccdwA9h/bU9TylDQQRMQ24
+CjglM50vQZKkKrs0DZ7Sw2671/9yWcpAEBGnAZcB/UCOY9y+wIeANwN7Fx8DwJLMvLwJpUqSNOnq
+aRocTSkDAXARMB9YDBw5jnFHAJ8GTs3M7wBExH8Fbo6IfTLzM40uVJKkyTKRpsHRlDUQnJiZWccP
++SzwpcEwAJCZ34mI5cBpgIFAktSWJto0OJpSBoLMHPNlgppxa4Dzh3joZcDDE6lJkqRWaFTT4GhK
+GQgapegp+DiVXoKPt7gcSZLGrLpp8PmDnp9w0+BoOjYQRMS/AL8J/Btwembe3+KSJEkak2Y0DY6m
+YwNBZp4YEbsD7wRuj4iPZubftbouSZKG09/fz6233cqNvTc2vGlwNB0bCAAycwdwTUScAFwWEddn
+5lPV+yxevPjFr+fNm8e8efMmtUZJkqB5TYNr7l/DmvvXAPDMI88Mu1/U2b83KSLiauDdY52YKCKm
+AANFEKjefh7wd8CCzLy9anu9/YuSJDVE9fLEB8w6gAMOPaBp/9ba76zlqs9dRWbuctqhHc4QDPuK
+HREHAxuqXtX/DHgeuKRm157i86aGVydJUh0Gmwa/cvNXKk2DC5rbNDiadggEQ148KS4D/BC4Ajiv
+2JzAn0TENzLzoWK/E4FzgTtsLJQklcGTTz7J0uuWsmLjCg5+7cG8Yv9XtLqkcgaCiPgi8CbgQCAj
+YjWVF/ujMnN7sVsfsBl4omro/6Zyi+E/RaULYw9gB/BZ4H9OUvmSJA2pv7+fW2+/lRuXFU2DJ01e
+0+BoSt1D0Gz2EEiSJsuqVau48torK02Dsxs/0+BYtHsPgSRJbWvLli3ccPMN9K7oZf/j9qdnWk+r
+SxqSgUCSpCYYGBjg7p/ezdJvLGXbQduYsWBGS5sGR2MgkCSpwWqbBidjpsGJMhBIktQgZW4aHI2B
+QJKkBmj28sTNZiCQJGkCBmcavGPlHaVuGhyNgUCSpDpUL0/cDk2DozEQSJI0TuvXr+ea669hxcYV
+HPK6QzjoZeVvGhyNgUCSpDHq7+/nlttu4abem9quaXA0BgJJksag3ZsGR2MgkCRpBJ3SNDgaA4Ek
+SUPotKbB0RgIJEmqsX79epZet5SVm1a2zUyDE2UgkCSpsEvT4KzOaRocjYFAkiQ6v2lwNAYCSVJX
+65amwdEYCCRJXanbmgZHYyCQJHWddlyeuNkMBJKkrtHOyxM3m4FAktQVVq1axZKvLuHJ3Z/syqbB
+0RgIJEkdbcuWLdxw8w0sW76MA447gJ5De1pdUikZCCRJHam2abDnlJ6ubhocjYFAktRxunGmwYky
+EEiSOkZ/fz+33nYrN/be2HUzDU6UgUCS1BG6fabBiTIQSJLa2oszDT54B/vP6t6ZBifKQCBJaku7
+zDT4hu6eaXCiDASSpLbjTIONV9pAEBHTgKuAUzLTyCdJcqbBJiplIIiI04DLgH4gxzFuGnAu8BZg
+Nyo/34PAosxc0YRSJUmTZNWqVVx57ZU2DTZJKQMBcBEwH1gMHDmOcYuAk4D5mbkuIvYCrgF+EhGv
+MxRIUvsZnGmwd2WvTYNNVNZAcGJmZh2ngRK4NDPXAWTmtoi4GPh94P3A+Y0tU5LULDYNTq5SBoLM
+HPNlghofBAZqtq0vPu9ff0WSpMlk0+DkK2UgqFdm7hhi8+Alh95JLEWSVAebBlunowLBMN4PrKDS
+SyBJKilnGmytjg4EEXEy8DbgP2fm9qH2Wbx48Ytfz5s3j3nz5k1KbZKkihdnGlx5B/sfZ9Ngo625
+fw1r7l8DwDOPPDPsflH/5frmi4irgXfXMw9BRBwHfAs4IzN/PMw+E2hXkCRNRG3T4GHHHmbTYJOt
+/c5arvrcVWTmLtdhOvIMQUTMAm4C3j5cGJAktY7LE5dPOwSCYd/CR8TBwIbqt/lFGPg6cFZm3lVs
+m0ZlcqJzm12sJGl4/f393HLbLdzUe5PLE5dMOwSCIX9TIuIE4IfAFcB5xbZjgduBrwEzI2JmsfuB
+wFHNL1WSNBybBsutlIEgIr4IvInKC3lGxGoqZwqOqmoO7AM2A09UDV0M/BpwTvFRrbeJJUuShmHT
+YHsoZSDIzPPGsM8DVAJD9bbTm1aUJGlcdplpcIEzDZZZKQOBJKm92TTYfgwEkqSGsWmwfRkIJEkN
+YdNgezMQSJImxKbBzmAgkCTVxabBzmIgkCSNm8sTdx4DgSRpzKqXJ57yqikuT9xBDASSpDGxabCz
+GQgkSSOyabA7GAgkSUOyabC7GAgkSbtwpsHuYyCQJL2ov7+fW2+7lRt7b3SmwS5jIJAkATYNdjsD
+gSR1uRebBh+8g/1n2TTYrQwEktSldmkafINNg93MQCBJXciZBlXLQCBJXaR6psE9X72nMw3qRQYC
+SeoSNg1qJAYCSepwNg1qLAwEktShbBrUeBgIJKkD2TSo8TIQSFIHsWlQ9TIQSFKHsGlQE2EgkKQ2
+N9g02LuilwOOO4CeQ3taXZLakIFAktpUbdNgzyk9Ng2qbgYCSWpDLk+sRjMQSFIb6e/v55bbbuGm
+3ptcnlgNZSCQpDZh06CaqdQXmyJiWkR8LyIG6hi7V0RcFhE7IuK3mlGfJE2GLVu2sOSaJXz26s/y
+/Kufp+f1PYYBNVxpzxBExGnAZUA/kOMc++vANcAA4Lk0SW3JmQY1mUobCICLgPnAYuDIcY79WDH+
+cOCqxpYlSc1n06AmW5kDwYmZmXU2y7wnMwci4r0NrkmSmsqmQbVKaQNBZo7rMkHN2HH3HEhSq9k0
+qFYqbSCQpG7x4vLEK+9g/+NcnlitYSCQpBbZpWlwgU2Dap2uDwSLFy9+8et58+Yxb968ltUiqXu4
+PLEmy5r717Dm/jUAPPPIM8PuZyCoCgSS1GwuT6zJ1jO7h57ZPQCs/c5a7r/r/iH36/pAIEmTZdWq
+VVx57ZU2DaqU2iUQDHvHQUQcDGyYyF0JktRMW7Zs4Yabb2DZ8mUuT6zSapdAMOT5tIg4AfghcAVw
+3njHS1IzDQwMcPdP72bpN5a6PLFKr7SBICK+CLwJOBDIiFhN5UzBUZm5vditD9gMPFEz9t3AXwBT
+izHXRsTzwLsz8/9M0o8gqYvZNKh2U9pAkJkjveMf3OcBKoGhdvtSYGkz6pKkkdg0qHZV2kAgSe3G
+pkG1MwOBJE2QTYPqBAYCSapT7UyDNg2qnRkIJKkO69ev55rrr7FpUB3DQCBJ47DL8sQ2DapDGAgk
+aYxcnlidzEAgSaNweWJ1AwOBJA3D5YnVTQwEkjSE9evXs/S6pazctNKmQXUFA4EkVdllpsFZNg2q
+OxgIJKlg06C6mYFAUtezaVAyEEjqYjYNSr9iIJDUlWwalHZmIJDUVXaZadCmQQkwEEjqIi82De5h
+06BUa1yBICL2Ao4EpgJPA49m5kAzCpOkRhlsGuxd0evyxNIwxhQIIuI3gXOA/YAngT7gZcCBEbEB
++Hxmrm1alZJUB5cnlsZu1EAQEe8GtgPnZOaOIR7fG3hXRPxbZv6gCTVK0rjZNCiNz4iBoHix/0Fm
+/mK4fTLz/wFfjohXNbo4SRqv/v5+br3tVm7sdaZBaTxGDATFi/2wYaBm339rSEWSVKeHH36YJdfZ
+NCjVY9SLaRFxXET8LCKeiYhrI+IVxfYzI+K7zS9Rkka2ZcsWllyzhM9c9Rme/w/P0/P6HsOANE5j
+aSpcDPw34N+AE4B/joh3ZeY/RsTfNLM4SRrJLk2DC2walOo1lkDwrcz8RvH1yoi4DvhkRFzWxLok
+aURPPvkkS69byoqNK2walBpgLIEgI+JYKrcdfjIz/29EfAw4F3hJU6uTpBq7LE98kk2DUiOMGggy
+c0lE/BdgFfBssW0H8IViDgJJmhSrVq3iymuvdHliqQlGu+1wDnAKlcmIlmbmC9WPZ+b1TaxNkoBK
+0+ANN99A78pe9p/l8sRSM4x22+G9wL0RcRBwRkT8GvAocHNmbpuMAiV1r12WJ36DyxNLzTKmqYsz
+cwPwDwARcQTwx8WkRcuB7w81g+FERcQ04CrglMz0L4DUZWwalCbXuFc7zMzVwN8BRMQs4IKI2B34
+l8z8USOKiojTgMuAfiDHOXYKldskfx94AdgC/Glm3tmI2iQ1l02DUmtMaPnjzHwAeCAq/7fOaUxJ
+AFwEzKcyB8KR4xz7t8A84ITM3BQRfwTcGhHHZ+bPGlijpAZ7cXlimwalSTfe5Y9PysxlxdcLgGWZ
++UJmJvCvDazrxMzM8b4riIijgD8G/igzNwFk5pUR8WHgM8DvNLBGSQ0yuDzxHSvvYP/jbBqUWmGs
+yx9/E3gEGIiIf83MLcCdwDuArzS6qCJg1OOtQADLarYvA86JiH0y87kJFSepYXZpGlxg06DUKmM9
+Q/BW4HVUrs1/LSL2Be6h8uLb8EAwAbOAHcDamu2rqfysx1CpW1KLVS9PfMjrDuGgl9k0KLXSWO8y
+eAG4MyL+e2beEhF7AnOBp5ta3fgdCDw3xBmGLcXnl9cOuO+++5pelKRfGWwafGj9Q2zdeyuHvOoQ
+ntnwDM9seKbVpUkdb8cLw98UOK4egsy8pfjcDzTkjoJWO/ujZ7/49bSZ05j2H6a1sBqps21Yu4H9
+d9+fmQfMZP7c+eyz7z6tLknqeA+ufJCHVj4EwB57DP+yX/ddBhFxKPDRzPxwvc/RBBuBfSMias4S
+vLT4vKl2wKmfPHVSCpO62bat21h37zpmHz6bs99+NkcccUSrS5K6xxk7f3vdtdcNudu4A0FEHAZc
+DLyLyuJGZQoEP6PS6Hg4O/cRHAFsBx5sRVFSt8qBZP3D6xlYM8BZC85i/rz5I75DkdQ6Y27njYhX
+RsQXgJVUmgl/ncnpIRj2joOIODh2vjfxpmL/k2p2PQm41TsMpMnTt6mPR29/lGM4hr/6yF9xyhtO
+MQxIJTbq/50R8UrgE8A7gWuAYzLzieKx5lZXlDBMXScAPwSuAM4DyMxVEfFl4OMR8a1iYqI/pHKG
+4J2TUazU7XZs38EvHvgFUzdP5cLTL2TOa+Y406DUBsYS128EHqcqCDRbRHwReBOVuwYyIlZTeed/
+VGZuL3brAzYDtTV9CFhE5a6I7VTuMDilmFVRUhNtXLuRvpV9vHHuGzn13FPZd999W12SpDGK0eYA
+iojdgFOpXJf/emaurXrs8cw8fNR/JOL1wD1VL+alEBG5aNmiVpchtb1tW7fxxH1PMH2P6TYNSiUX
+EWTmLqftRj1DkJkDwE3FtfrfjYjfA76ZmY+N8g++ncpkRncBt1Np9rumnuIlldNg02CuSc5ccKZN
+g1IbG/P/ucVtfDcXweDNRTDYe4Qh04Brgd+m0uz3KAYCqWM8+8tn2XDvBuYcNoczP3Imr3jFK1pd
+kqQJqGf54wS+VQSDkc4SrM3Mu4G7gc/VWZ+kktmxfQfrHljH1M1TOf+t5zN3zlybBqUOMGIgiIiX
+AG/IzG/VPjZ4xqDYL4C3ZeZXq3Z5WUT8LyprHdxVzG4oqY3ZNCh1rhEDQWY+HxGrIuJS4F+AO4qV
+DgGIiIOABcBs4NKa4UcA36ay5PBnIuKpzDytodVLmhSDTYOH7344C89ZyMyZM1tdkqQGG0tT4aqI
++Djwe8DfFFMWT6GyquAjwI2Z+dEhht6fmTdR6R8YPNsgqY1UzzRo06DU2ca62uEA8PXiY6wOiYiL
+gesz898z8/l6CpTUGn2b+thw7wbmvnKuTYNSF2hm1H85lcWGPhsRrwLuzswPNPHfk9QAzjQodadm
+BoLbgX0y80sAETG9if+WpAawaVDqXhMOBBHxZuAPqKwnsBdwInBnZt5VvV/1DIeSyqV6psGLzr3I
+mQalLtSIMwRHAv8H2Af4CZUVEJ+KiEWZeU8Dnl9Sk9g0KGlQQ/7Pz8wrIuJU4CAqtyA+A1wCGAik
+knKmQUnVGhEIDo2IucB7gZ9k5maAiPASgVRC1TMNXnDaBTYNSgIaEwguBf4e6AHOAYiINwFbG/Dc
+khpo0+Ob2LJii02DknYx4UCQmRuB3x/8PiIOAL6G6xdIpVHdNLjw3IU2DUraRcO7hzJzc0S8IjOf
+a/RzSxoflyeWNFZN+ctgGJBaz5kGJY2HbxWkDjM40+B+m/dzpkFJY2YgkDqIMw1KqpeBQOoALk8s
+aaIMBFIbs2lQUqP4l0NqUzYNSmokA4HUZmwalNQMBgKpjdg0KKlZDARSG9i2dRvr7l3HjCkzXJ5Y
+UlMYCKQSq16e+KwFZ9k0KKlp/MsilZRNg5Imk4FAKhmbBiW1QikDQUQcBFwOzC02LQcuzMx1Yxg7
+A7gEeB3wAvAM8OnMvLlJ5UoNY9OgpFYpXSCIiD2B7wM/B44pNi8BlkXEazJz6whjDwLuAn4MHJmZ
+L0TE24EbI+LUzPx2k8uX6lK9PLFNg5JaoXSBAHgPcCxwamYOAETEx4B1wAeAy0YY+0FgGnBxZr4A
+kJlfjYgPAZ8DDAQqleqZBt/5hndy8kkn2zQoqSV2a3UBQzgdeCwz1wxuyMyngAeLx0byG0B/Zj5S
+s305cHREvLqRhUoT0bepj0dvf5RjOIbPfuSzvHHBGw0DklqmjH99ZlG5XFBrDTB/lLFbgaG6rwaK
+z0cBtWFBmlQ2DUoqozIGggOBviG2bwH2iYi9MnPbMGPvBU6PiFmZ+UDV9tnF55c2sE5p3GwalFRW
+ZQwEOYGxfwf8CXB5RJwB/F/gj6j0JAD8vwnWJtXFpkFJZVfGQLAR2G+I7S8Fto5wdoDM7IuIE4FP
+UbnT4DmgF1gIfBl4vHZM79W9L37dM7uHntk99Vcu1aieadDliSW1Qm9vL729vaPuF5kTeUPeeBHx
+XeDozDyiZvtyoC8zj6/jOf8U+DPgFZnZX7U9Fy1bNNGSpSHtNNPg7zvToKRyiAgyc5fGpTK+VbkR
+uCIiZmTmYwARcTBwNHBx9Y7F9g1ZpJqI2Bs4ITNvq3nO3wG+Uh0GpGYZbBqcunmqTYOS2kYZbzu8
+msptgpdGxO4RsRuVmQcfBb40uFNEnAA8AXyhauzBwDcjYnaxz24R8RHgEODPJ6d8dbONazey9ra1
+LDh8AZd8/BLmzplrGJDUFkp3hiAzt0fEAipTFz9IpclwOTA/M5+r2rUP2EwlFAzaDHwT+HpEbKFy
+u+FdwPGZ+cvJqF/dyaZBSe2udIEAIDM3AGeOss8DVG5RrN72DPC2JpYm7cSmQUmdwr9cUp2e/eWz
+bLh3A3MOm+PyxJLanoFAGqcd23ew7oF1TN08lQtOu8CmQUkdwUAgjYMzDUrqVAYCaQxsGpTU6QwE
+0giqlye2aVBSJ/MvmzSMvk19PH3f0zYNSuoKBgKpRvVMg+e/9XwnF5LUFQwEUhWbBiV1KwOBhE2D
+kmQgUFezaVCSKvzLp6610/LENg1K6nIGAnUdlyeWpF0ZCNRVbBqUpKEZCNQVbBqUpJEZCNTRbBqU
+pLHxL6M6lk2DkjR2BgJ1nMGmwf0272fToCSNkYFAHWXj2o30PdjHG+fYNChJ42EgUEcYbBo8fPfD
+Wfj+hcycObPVJUlSWzEQqK3ZNChJjeFfTrWtZ3/5LBvu3eDyxJLUAAYCtZ0d23ew7oF1TN08lQtO
+u8CmQUlqAAOB2sqmxzfRt7KPU+acYtOgJDWQgUBtobpp8MPv/7BNg5LUYAYClVoOJOtXrWdg9YBN
+g5LURP5lVWnZNChJk8dAoNKxaVCSJp+BQKXi8sSS1BoGApXCtq3bWHfvOmZMmeHyxJLUAqUMBBFx
+EHA5MLfYtBy4MDPXjWHsNODTwAlAP5Wf8Z+BSzNze3MqVr2qZxo8a8FZNg1KUouU7i9vROwJfB/4
+OXBMsXkJsCwiXpOZW0cYuxvwHWB34PjM3BwRs4G7gAOBC5tavMalennisz56FgceeGCrS5KkrlW6
+QAC8BzgWODUzBwAi4mPAOuADwGUjjD0aOA74cGZuBsjM+yPiVuAdGAhKweWJJal8yhgITgcey8w1
+gxsy86mIeLB4bKRA8ELxeUrN9imAlwtKwKZBSSqnMgaCWVQuF9RaA8wfaWBmroqIfwLOiYjrM/Ox
+iJhfjPuThleqMRucaXD6HtNtGpSkEipjIDgQ6Bti+xZgn4jYKzO3jTD+PVQaEh+JiKeBfYAPZuaS
+xpeq0Qw2DQ6scaZBSSqzMv5lznoHRsRLqDQk7g7MyMz1EfEa4JsRMSszL2hUkRpd36Y+nr7vaWca
+lKQ2UMZAsBHYb4jtLwW2jnJ24Gwqtxv+58xcD5CZ90XEXwN/ExH/lJk/qR7Qe3Xvi1/3zO6hZ3bP
+xKrXTk2DzjQoSa3V29tLb2/vqPtFZt1vyJsiIr4LHJ2ZR9RsXw70ZebxI4z9EnAOcEhmbqja/ibg
+28A5mfkPVdtz0bJFjf4RutpOTYNvtmlQksomIsjMXd6llfEMwY3AFRExIzMfA4iIg6ncUnhx9Y7F
+9g35q1TzVPF5BrChatcZNY+rwaqXJ154zkKXJ5akNlPGMwRTgHuAh4AzqfQUXAkcD7wmM58r9jsB
++CFwRWaeV2zrAX4G/Bg4PTOfjYjpwA+o3JI4KzP7q/4tzxBMUPVMg2csOMOmQUkqubY5Q5CZ2yNi
+AZU7BR6kEgiWA/MHw0ChD9gMPFE1dk1EvBZYDPw0IvqpzEHwbeDT1WFAE1c906BNg5LU3kp3hmAy
+eYagPoNNg1M3T+W9p73XpkFJaiNtc4ZA5eZMg5LUmQwEGpPB5Ymn7zHdpkFJ6kAGAo2oeqZBlyeW
+pM7lX3YNy5kGJal7GAi0i+qmwfPfej5z58y1aVCSOpyBQDvZ9PgmtqzYYtOgJHUZA4GAnZcnXnju
+QpcnlqQuYyDocjmQrF+1noHVLk8sSd3Mv/xd7NlfPsuGezfYNChJMhB0ox3bd7DugXXsu3lflyeW
+JAEGgq7jTIOSpKEYCLpEddPgRedeZNOgJGknBoIOV708sU2DkqTh+MrQwVyeWJI0VgaCDjQ40+B+
+m/fjwtMvtGlQkjQqA0GHsWlQklQPA0GHsGlQkjQRBoI2V708sU2DkqR6+crRxmwalCQ1ioGgDVUv
+T2zToCSpEQwEbcamQUlSMxgI2sS2rdtYd+86ZkyZYdOgJKnhDAQlV900eNaCs2walCQ1ha8sJWbT
+oCRpshgISsiZBiVJk81AUDI2DUqSWsFAUBI2DUqSWslA0GLVyxPbNChJahVfeVrIpkFJUlmUMhBE
+xEHA5cDcYtNy4MLMXDfKuPcClwDrax6aAhwDnJyZyxpb7fg506AkqWxKFwgiYk/g+8DPqbyIAywB
+lkXEazJz6wjDE/hiZn6q5jn/APhroLfxFY/PxrUb6XuwjzfOsWlQklQepQsEwHuAY4FTM3MAICI+
+BqwDPgBcNsLYHwJTh9j+PmBJZmaDax2znZoGz7FpUJJULmUMBKcDj2XmmsENmflURDxYPDZsIMjM
+1bXbImIm8FvAexte6Rg406AkqR2U8ZVpFpXLBbXWAPPreL73Abdk5uMTKaoeNg1KktpFGQPBgUDf
+ENu3APtExF6ZuW0sTxQRuwPvBs5rYH2jsmlQktRuyhgIGnmd/83F52818DlH5EyDkqR2VMZAsBHY
+b4jtLwW2jvXsQGGwmXBguB16r+598eue2T30zO4Zx9P/yrat23jivieYvsd0ZxqUJJVGb28vvb29
+o+4XLWy8H1JEfBc4OjOPqNm+HOjLzOPH+DzTgNXAq4frH4iIXLRs0YTqrZ5p8IwFZ9g0KEkqtYgg
+M3e5jl3GV64bgSsiYkZmPgYQEQcDRwMXV+9YbN8wzO2Efwjc3sxmQpsGJUmdYrdWFzCEq6nMTHhp
+ROweEbtRmX3wUeBLgztFxAnAE8AXap8gKh18ZwNfbkaBO7bv4LF/fYzt923nwtMv5IJzLzAMSJLa
+WunOEGSeVsBYAAALO0lEQVTm9ohYQGXq4gepNBkuB+Zn5nNVu/YBm6mEglonAS8Bvtno+gabBk+Z
+cwpvOfctNg1KkjpC6QIBQGZuAM4cZZ8HqNyiONRjPwBe2ciaBpsGD9/9cBaes5CZM2c28uklSWqp
+UgaCMqluGjxzwZk2DUqSOpKvbCN49pfPsuHeDcw5bI5Ng5KkjmYgGMKO7TtY98A6pm6eyvlvPZ+5
+c+Y606AkqaMZCGpsenwTW1ZscaZBSVJXMRAUqmcaXHjuQmcalCR1la4PBNXLE9s0KEnqVl3/yrf6
+B6ttGpQkdb3SrWUwmSIi7/nXe1yeWJLUNYZby6DrA0E3//ySpO4zXCAo41oGkiRpkhkIJEmSgUCS
+JBkIJEkSBgJJkoSBQJIkYSCQJEkYCCRJEgYCSZKEgUCSJGEgkCRJGAgkSRIGAkmShIFAkiRhIJAk
+SRgIJEkSBgJJkoSBQJIkYSCQJEkYCCRJEiUNBBFxUET8Y0T8vPi4PiIOG8f44yLiGxFxb0Q8VDzH
+pc2sWZKkdla6QBARewLfB/YAjik+tgLLImLfMYw/HrgN+JvMnJOZ/xH4n8AZzatakqT2FpnZ6hp2
+EhF/DFwBzMzMNcW2g4F1wMWZedkIYwN4EPhaZv551fY9gJMz85aa/bNsP78kSc0UEWRm1G4v3RkC
+4HTgscEwAJCZT1F5oT99lLEnAkcB36remJkv1IaBdtXb29vqEjqex7j5PMaTw+PcfJ10jMsYCGYB
+q4fYvgY4dpSxxxef94mIGyJiRUQsj4jPRMRLGllkq3TSL19ZeYybz2M8OTzOzddJx3iPVhcwhAOB
+viG2b6HyQr9XZm4bZuzhxeelwNsy80cR8evAd4HfAN7Y8GolSeoAZTxDMJGL+oNnAa7JzB8BZOYK
+4FJgQUT81kSLkySpE5WxqXAd8HBmzq/ZfjNwUmbuN8LYy4ELgHdk5nVV208Efgh8JDP/e9X2cv3w
+kiRNgqGaCst4yeAB4Oghth8BLB9l7EPF59ozHzuG2j7UAZEkqRuV8ZLBjcCMiJgxuKG47fBo4Ibq
+HSPi4OJWw0HfofLiP6vmOX+9+PzTxpcrSVL7K+MlgynAPVTe7Z9JpafgSip3ELwmM58r9juBymWA
+KzLzvKrxnwfeBfx2Zj4UEYcCdwD/npn/ZVJ/GEmS2kTpLhlk5vaIWABcTmXugaRyqWD+YBgo9AGb
+gSdqnuKjwEbg5oh4gcrPeAOwqNm1S5LUrkp3hkBS+4qIacBVwCmZWcZLkh3B49x8jTjGEfGXwCeA
+P8zM/93I+prBX6QScDGn5pvIMY6IaRHxv4pj+7OIWBkRnywub6kQEacBdwI9jPP24YiYEhGfLo7x
+8oi4s7gsqBr1Hufi9/gvit/h5cWxvqGYq0VVJvK7XPUcrwQWFuPb4p23gaDFXMyp+SZyjCNiNyrN
+qq8Fjs/M46j0tnwC+Fwz625DFwHzgR8D472D52+p/M6emJnHAkuAWyPiuMaW2BHqPc6LgHcA/7U4
+xrOpNGH/xFCwi4n8Lg/6LHD7BMZPOgNB672HypTMH8vMgcwcAD4GzAQ+MNLA4g6LK4G/z8xlVQ99
+ebSxXabuY0zl7pbjgCszczNAZt4P3Erlj6t+5cTqNUjGKiKOAv4YuCQzNwFk5pVUpjD/TEMr7Ax1
+HWcq71Ivzcx1AMWMrxcDewPvb1x5HaHeYwxARMyl0gj/tw2raBIYCFrPxZyabyLH+IXic+3lgSnA
+9kYV2AkmsHToW6m8i1pWs30ZcEpE7DOhwjrMBI7zB6lcE6+2vvi8f/0VdZ4GLIP7eSpnEfsbUM6k
+MRC0nos5NV/dxzgzVwH/BJwzODdGRMyncjrRO1caYxaVU9dra7av5leXeTRBmbljiBe6I4vPvZNc
+TseKiLcAe1XPltsuSnfbYRdyMafmm8gxhsolh8uBRyLiaWAf4IOZuaTxpXalA4Hnhnix2lJ8fvkk
+19NN3g+sAK5pdSGdoGg0vgQ4u9W11MMzBK3nYk7NV/cxLs609FIJWDMy8zAqZwf+IiL+R2PKkyZf
+RJwMvI3KmwkvfzXGB4AVmXlXqwuph4Gg9TYCQy3Y9FJg6yjvXAff9d5fs33w+9+YYG2dYiLH+Gzg
+BOCjmbkeIDPvA/4a+FBEvK7RxXahjcC+NdOQQ+W/D8CmSa6n4xV3b1wN/G5m/rzF5XSEiNifSpPm
+xUM9PMnl1MVA0HoPUFm4qVbDF3PqYhM5xoM9Bo/UbB/8vnbdDI3fz6j8rh5es/0IKo2bD056RR0s
+ImYBNwFvz8wft7qeDvKfqDQhXx8R90XEfcA/FI99qtj2ydaVNzpfMFrPxZyabyLH+Kni8wx2NqPm
+ce1s2Ms0Qxzjm4r9T6rZ9STg1popy7Wz8RznwTDwdeCswdPaxYRFf9/cMtvamI5xZn4vM6dn5msG
+P4D3Fbv+ebHtLyej4HoZCFrvairvUi+NiN2LiXAuAR4FvjS4UzFr2xPAFwa3ZeYvqExC9L6I+I/F
+focCf0rlD+kdk/VDlNzV1HmMi7F9wF9GxNRiv+nAR4BVwPcmof52NOQp0mF+j1dRmTvj4xHx8mK/
+P6RyhuDPml9qWxvzcY6IY6lMlHMLMDMizoqIs4C3U7l9WUMb8zEeYWxbXDLwLoMWczGn5pvIMc7M
+NRHxWmAx8NOI6KcyB8G3gU9nZlvdZ9xMEfFF4E1U7hrIiFhN5VgfVdW0Ntzv8Yeo/M7eGRHbqdxh
+cEpmPjApxbeRCRznxcCvAecUH9V6m1hy25ng7zIRcQjwIyqN3wlcFhGLqVymubv5P0F9XNxIkiR5
+yUCSJBkIJEkSBgJJkoSBQJIkYSCQJEkYCCRJEgYCSZKEgUCSJGEgkDRJiqWk6x27dyNrkbQrA4Gk
+pouII4E31GzbLSLujohXjuEpXh4R725OdZLAQCCpyYrFpP4oM79V89CpwOPAJ4YZt0dEfBNeXMhr
+e0T8ZlOLlbqYgUBSs/0e8C/VG4olYw+nsqjRO4c5S/A64JGq769j10V5JDWIgUBSs/0eULsU9+8C
+X8/MJ4BrgI9XPxgRbwT+GzAQEScBZOYOYL+I2Kv5JUvdx0AgqdkOzcwtg98UZwemZ+baYtNfAWdG
+xGGD+2TmLVTWkP9UZi6req4ngSMnoWap6xgIJDXblJrv3wx8c/Cb4izBV4CLB7dFxJ7AvtVBotAH
+TG1SnVJXMxBIarYdg18UZweOyMzHava5BHhXRBxafD8XuCci9omIBVX7vQx4uqnVSl3KQCCp2R6J
+iIOKr38XWBQRj1d/AD8CXgJ8tNjvaSqXDE4Dqi8ZHAg8Okl1S10lMrPVNUhqYxFxIPAx4Ili06rM
+/HbV4ycDh2TmP07w39kbuCQzL5jI80gammcIJE3U3wPXZublwHPAH1Q/mJm3A7OLywUT8S7g8xN8
+DknD8AyBpAmJiPuANcDVwE+A52qbAYuzCCdn5lfr/DdeReXOhB9MrFpJwzEQSJqQiHgt8NdUJhLa
+APxGZtr4J7UZLxlIqltEHJCZd2fmPOBQKs2AJ7a2Kkn1MBBIqktE7AP8IiLeVGx6BngKuLN1VUmq
+l5cMJNUtIhYDjwH7AtOB6zLznog4HjgZ2ERldsHZwGoqoWE6sL7efgJJzbFHqwuQ1L4yc/EwD+0D
+bARelplfjIgE3pyZ7yt6Dt4BGAikEvGSgaSGy8zbgHnA9cWmE6hMTwzw28BdLShL0ggMBJKa5VWZ
++e/F16/nVyHgzcDtEfH61pQlaSgGAkkNFxHTgbuLr18CPJWZ/cXDjwK/A9zTovIkDcGmQkmS5BkC
+SZJkIJAkSRgIJEkSBgJJkoSBQJIkYSCQJEkYCCRJEgYCSZIE/H877uikwk6wsgAAAABJRU5ErkJg
+gg==
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Summary">Summary<a class="anchor-link" href="#Summary">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we want the algorithm to behave in the way expected of Euler&#39;s method, then measuring a single convergence rate is useful but not sufficient. Instead we must measure the convergence rate twice, once with base timestep $\dt$ and once with base timestep $\dt/2$. The difference between the measured slope $\sm{\dt}$ and the expected slope $s_e=1$ must go down by at least $2/3$ when the timestep is reduced to $\dt/2$.</p>
+</div>
+</div>
+</div></p>
+<hr />
+<p>You can <a href="http://IanHawke.github.io/blog/notebooks/02-Close-Enough-Slopes.ipynb">download this notebook</a>.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+    <p>
+        <strong>About Ian Hawke</strong><br/>
+        Ian Hawke, numerical relativist, Southampton
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://twitter.com/IanHawke"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://github.com/IanHawke"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+              </ul>
+            </li>
+
+
+
+            <li class="list-group-item"><a href="http://IanHawke.github.io/blog/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="http://IanHawke.github.io/blog/tag/python.html">
+                            Python
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 Ian Hawke
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://IanHawke.github.io/blog/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://IanHawke.github.io/blog/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://IanHawke.github.io/blog/theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = 'http://IanHawke.github.io/blog/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'IanHawke',
+                count: 5,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="http://IanHawke.github.io/blog/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+
+</body>
+</html>

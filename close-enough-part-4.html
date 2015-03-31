@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en"
+>
+<head>
+    <title>Close Enough Part 4 - Ian Hawke</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+<style type="text/css">
+
+/*some stuff for output/input prompts*/
+div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.cell.selected{border-radius:4px;border:thin #ababab solid}
+div.cell.edit_mode{border-radius:4px;border:thin #008000 solid}
+div.cell{width:100%;padding:5px 5px 5px 0;margin:0;outline:none}
+div.prompt{min-width:11ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}
+@media (max-width:480px){div.prompt{text-align:left}}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}
+div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;line-height:1.21429em}
+div.prompt:empty{padding-top:0;padding-bottom:0}
+div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:horizontal;-moz-box-align:stretch;display:box;box-orient:horizontal;box-align:stretch;}
+div.inner_cell{width:90%;}
+div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;}
+div.input_prompt{color:navy;border-top:1px solid transparent;}
+div.output_wrapper{margin-top:5px;position:relative;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
+div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:4px;-webkit-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);-moz-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);}
+div.output_collapsed{margin:0px;padding:0px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
+div.out_prompt_overlay{height:100%;padding:0px 0.4em;position:absolute;border-radius:4px;}
+div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000000;-moz-box-shadow:inset 0 0 1px #000000;box-shadow:inset 0 0 1px #000000;background:rgba(240, 240, 240, 0.5);}
+div.output_prompt{color:darkred;}
+
+a.anchor-link:link{text-decoration:none;padding:0px 20px;visibility:hidden;}
+h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anchor-link,h5:hover .anchor-link,h6:hover .anchor-link{visibility:visible;}
+/* end stuff for output/input prompts*/
+
+
+.highlight-ipynb .hll { background-color: #ffffcc }
+.highlight-ipynb  { background: #f8f8f8; }
+.highlight-ipynb .c { color: #408080; font-style: italic } /* Comment */
+.highlight-ipynb .err { border: 1px solid #FF0000 } /* Error */
+.highlight-ipynb .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight-ipynb .o { color: #666666 } /* Operator */
+.highlight-ipynb .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight-ipynb .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight-ipynb .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight-ipynb .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight-ipynb .gd { color: #A00000 } /* Generic.Deleted */
+.highlight-ipynb .ge { font-style: italic } /* Generic.Emph */
+.highlight-ipynb .gr { color: #FF0000 } /* Generic.Error */
+.highlight-ipynb .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight-ipynb .gi { color: #00A000 } /* Generic.Inserted */
+.highlight-ipynb .go { color: #888888 } /* Generic.Output */
+.highlight-ipynb .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight-ipynb .gs { font-weight: bold } /* Generic.Strong */
+.highlight-ipynb .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight-ipynb .gt { color: #0044DD } /* Generic.Traceback */
+.highlight-ipynb .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight-ipynb .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight-ipynb .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight-ipynb .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight-ipynb .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight-ipynb .kt { color: #B00040 } /* Keyword.Type */
+.highlight-ipynb .m { color: #666666 } /* Literal.Number */
+.highlight-ipynb .s { color: #BA2121 } /* Literal.String */
+.highlight-ipynb .na { color: #7D9029 } /* Name.Attribute */
+.highlight-ipynb .nb { color: #008000 } /* Name.Builtin */
+.highlight-ipynb .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight-ipynb .no { color: #880000 } /* Name.Constant */
+.highlight-ipynb .nd { color: #AA22FF } /* Name.Decorator */
+.highlight-ipynb .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight-ipynb .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight-ipynb .nf { color: #0000FF } /* Name.Function */
+.highlight-ipynb .nl { color: #A0A000 } /* Name.Label */
+.highlight-ipynb .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight-ipynb .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight-ipynb .nv { color: #19177C } /* Name.Variable */
+.highlight-ipynb .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight-ipynb .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight-ipynb .mf { color: #666666 } /* Literal.Number.Float */
+.highlight-ipynb .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight-ipynb .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight-ipynb .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight-ipynb .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight-ipynb .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight-ipynb .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight-ipynb .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight-ipynb .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight-ipynb .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight-ipynb .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight-ipynb .sx { color: #008000 } /* Literal.String.Other */
+.highlight-ipynb .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight-ipynb .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight-ipynb .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight-ipynb .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight-ipynb .vc { color: #19177C } /* Name.Variable.Class */
+.highlight-ipynb .vg { color: #19177C } /* Name.Variable.Global */
+.highlight-ipynb .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight-ipynb .il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+div.entry-content {
+  overflow: visible;
+  padding: 8px;
+}
+.input_area {
+  padding: 0.2em;
+}
+
+a.heading-anchor {
+ white-space: normal;
+}
+
+.rendered_html
+code {
+ font-size: .8em;
+}
+
+pre.ipynb {
+  color: black;
+  background: #f7f7f7;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0px;
+  font-size: 13px;
+}
+
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
+img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
+</style>
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<script type="text/javascript">
+init_mathjax = function() {
+    if (window.MathJax) {
+        // MathJax loaded
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+            },
+            displayAlign: 'left', // Change this to 'center' to center equations.
+            "HTML-CSS": {
+                styles: {'.MathJax_Display': {"margin": 0}}
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }
+}
+init_mathjax();
+</script>
+
+<link rel="canonical" href="http://IanHawke.github.io/blog/close-enough-part-4.html">
+
+        <meta name="author" content="Ian Hawke" />
+        <meta name="keywords" content="Python" />
+        <meta name="description" content="The fourth in the series on testing, this discusses the more complex example of an n-body code." />
+
+        <meta property="og:site_name" content="Ian Hawke" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Close Enough Part 4"/>
+        <meta property="og:url" content="http://IanHawke.github.io/blog/close-enough-part-4.html"/>
+        <meta property="og:description" content="The fourth in the series on testing, this discusses the more complex example of an n-body code."/>
+        <meta property="article:published_time" content="2015-03-29" />
+            <meta property="article:section" content="Testing" />
+            <meta property="article:tag" content="Python" />
+            <meta property="article:author" content="Ian Hawke" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://IanHawke.github.io/blog/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://IanHawke.github.io/blog/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://IanHawke.github.io/blog/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://IanHawke.github.io/blog/theme/css/style.css" type="text/css"/>
+
+        <link href="http://IanHawke.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Ian Hawke ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://IanHawke.github.io/blog/" class="navbar-brand">
+Ian Hawke            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://IanHawke.github.io/blog/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://IanHawke.github.io/blog/close-enough-part-4.html"
+                       rel="bookmark"
+                       title="Permalink to Close Enough Part 4">
+                        Close Enough Part 4
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-03-29T00:00:00+00:00"> Sun 29 March 2015</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://IanHawke.github.io/blog/tag/python.html">Python</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <!-- the next line is the key to include the notebook here: -->
+
+<p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In <a href="http://software-carpentry.org/blog/2014/10/why-we-dont-teach-testing.html">Greg&#39;s original post</a> he specifically references the <a href="http://benchmarksgame.alioth.debian.org/u32/program.php?test=nbody&amp;lang=python3&amp;id=1">Python 3 version</a> of the <a href="http://benchmarksgame.alioth.debian.org/u32/performance.php?test=nbody">n-body benchmark</a>. In particular, he asks how to test the <code>advance</code> function. </p>
+<p>There&#39;s a number of useful and important comments underneath the original post, in particular <a href="http://software-carpentry.org/blog/2014/10/why-we-dont-teach-testing.html#comment-1662471640">this thread on details of the algorithm and the problems with the code</a>, but here we&#39;ll start from scratch.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let&#39;s reproduce that code here (please note the <a href="http://benchmarksgame.alioth.debian.org/license.html">OSI BSD license</a>).</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;serif&#39;</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="c"># The Computer Language Benchmarks Game</span>
+<span class="c"># http://benchmarksgame.alioth.debian.org/</span>
+<span class="c">#</span>
+<span class="c"># originally by Kevin Carson</span>
+<span class="c"># modified by Tupteq, Fredrik Johansson, and Daniel Nanz</span>
+<span class="c"># modified by Maciej Fijalkowski</span>
+<span class="c"># 2to3</span>
+
+<span class="kn">import</span> <span class="nn">sys</span> 
+
+<span class="k">def</span> <span class="nf">combinations</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">ls</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">l</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">y</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">PI</span> <span class="o">=</span> <span class="mf">3.14159265358979323</span>
+<span class="n">SOLAR_MASS</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">PI</span> <span class="o">*</span> <span class="n">PI</span>
+<span class="n">DAYS_PER_YEAR</span> <span class="o">=</span> <span class="mf">365.24</span>
+
+<span class="n">BODIES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;sun&#39;</span><span class="p">:</span> <span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">SOLAR_MASS</span><span class="p">),</span>
+
+    <span class="s">&#39;jupiter&#39;</span><span class="p">:</span> <span class="p">([</span><span class="mf">4.84143144246472090e+00</span><span class="p">,</span>
+                 <span class="o">-</span><span class="mf">1.16032004402742839e+00</span><span class="p">,</span>
+                 <span class="o">-</span><span class="mf">1.03622044471123109e-01</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">1.66007664274403694e-03</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">,</span>
+                 <span class="mf">7.69901118419740425e-03</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">,</span>
+                 <span class="o">-</span><span class="mf">6.90460016972063023e-05</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">],</span>
+                <span class="mf">9.54791938424326609e-04</span> <span class="o">*</span> <span class="n">SOLAR_MASS</span><span class="p">),</span>
+
+    <span class="s">&#39;saturn&#39;</span><span class="p">:</span> <span class="p">([</span><span class="mf">8.34336671824457987e+00</span><span class="p">,</span>
+                <span class="mf">4.12479856412430479e+00</span><span class="p">,</span>
+                <span class="o">-</span><span class="mf">4.03523417114321381e-01</span><span class="p">],</span>
+               <span class="p">[</span><span class="o">-</span><span class="mf">2.76742510726862411e-03</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">,</span>
+                <span class="mf">4.99852801234917238e-03</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">,</span>
+                <span class="mf">2.30417297573763929e-05</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">],</span>
+               <span class="mf">2.85885980666130812e-04</span> <span class="o">*</span> <span class="n">SOLAR_MASS</span><span class="p">),</span>
+
+    <span class="s">&#39;uranus&#39;</span><span class="p">:</span> <span class="p">([</span><span class="mf">1.28943695621391310e+01</span><span class="p">,</span>
+                <span class="o">-</span><span class="mf">1.51111514016986312e+01</span><span class="p">,</span>
+                <span class="o">-</span><span class="mf">2.23307578892655734e-01</span><span class="p">],</span>
+               <span class="p">[</span><span class="mf">2.96460137564761618e-03</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">,</span>
+                <span class="mf">2.37847173959480950e-03</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">,</span>
+                <span class="o">-</span><span class="mf">2.96589568540237556e-05</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">],</span>
+               <span class="mf">4.36624404335156298e-05</span> <span class="o">*</span> <span class="n">SOLAR_MASS</span><span class="p">),</span>
+
+    <span class="s">&#39;neptune&#39;</span><span class="p">:</span> <span class="p">([</span><span class="mf">1.53796971148509165e+01</span><span class="p">,</span>
+                 <span class="o">-</span><span class="mf">2.59193146099879641e+01</span><span class="p">,</span>
+                 <span class="mf">1.79258772950371181e-01</span><span class="p">],</span>
+                <span class="p">[</span><span class="mf">2.68067772490389322e-03</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">,</span>
+                 <span class="mf">1.62824170038242295e-03</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">,</span>
+                 <span class="o">-</span><span class="mf">9.51592254519715870e-05</span> <span class="o">*</span> <span class="n">DAYS_PER_YEAR</span><span class="p">],</span>
+                <span class="mf">5.15138902046611451e-05</span> <span class="o">*</span> <span class="n">SOLAR_MASS</span><span class="p">)</span> <span class="p">}</span>
+
+
+<span class="n">SYSTEM</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">BODIES</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="n">PAIRS</span> <span class="o">=</span> <span class="n">combinations</span><span class="p">(</span><span class="n">SYSTEM</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">advance</span><span class="p">(</span><span class="n">dt</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">SYSTEM</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">PAIRS</span><span class="p">):</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="p">(([</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">z1</span><span class="p">],</span> <span class="n">v1</span><span class="p">,</span> <span class="n">m1</span><span class="p">),</span>
+             <span class="p">([</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">z2</span><span class="p">],</span> <span class="n">v2</span><span class="p">,</span> <span class="n">m2</span><span class="p">))</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+            <span class="n">dx</span> <span class="o">=</span> <span class="n">x1</span> <span class="o">-</span> <span class="n">x2</span>
+            <span class="n">dy</span> <span class="o">=</span> <span class="n">y1</span> <span class="o">-</span> <span class="n">y2</span>
+            <span class="n">dz</span> <span class="o">=</span> <span class="n">z1</span> <span class="o">-</span> <span class="n">z2</span>
+            <span class="n">mag</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">*</span> <span class="p">((</span><span class="n">dx</span> <span class="o">*</span> <span class="n">dx</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">dy</span> <span class="o">+</span> <span class="n">dz</span> <span class="o">*</span> <span class="n">dz</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">))</span>
+            <span class="n">b1m</span> <span class="o">=</span> <span class="n">m1</span> <span class="o">*</span> <span class="n">mag</span>
+            <span class="n">b2m</span> <span class="o">=</span> <span class="n">m2</span> <span class="o">*</span> <span class="n">mag</span>
+            <span class="n">v1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-=</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">b2m</span>
+            <span class="n">v1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">b2m</span>
+            <span class="n">v1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-=</span> <span class="n">dz</span> <span class="o">*</span> <span class="n">b2m</span>
+            <span class="n">v2</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dx</span> <span class="o">*</span> <span class="n">b1m</span>
+            <span class="n">v2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dy</span> <span class="o">*</span> <span class="n">b1m</span>
+            <span class="n">v2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dz</span> <span class="o">*</span> <span class="n">b1m</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="p">[</span><span class="n">vx</span><span class="p">,</span> <span class="n">vy</span><span class="p">,</span> <span class="n">vz</span><span class="p">],</span> <span class="n">m</span><span class="p">)</span> <span class="ow">in</span> <span class="n">bodies</span><span class="p">:</span>
+            <span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">vx</span>
+            <span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">vy</span>
+            <span class="n">r</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">vz</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In previous notebooks we compared the results of the algorithm with the expected behaviour within the context of a <em>model</em>. The model only considered the behaviour of the numerical algorithm: we took it for granted that the correct physics had been implemented. In this case, the <code>advance</code> function is doing two things, neither of which are immediately obvious:</p>
+<ol>
+<li>it evaluates the forces due to gravitational interaction between all of the particles, and</li>
+<li>it evolves the system of particles forwards in time.</li>
+</ol>
+<p>In testing whether the results are <em>close enough</em>, we need to test within the context of <em>two</em> models: we need to check that the correct physics is implemented, and we need to check that the numerical evolution behaves as expected.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-models">The models<a class="anchor-link" href="#The-models">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The physics that we&#39;re modelling is the <a href="http://en.wikipedia.org/wiki/N-body_problem">classical n body problem</a> of massive particles interacting only through gravity. The <a href="http://en.wikipedia.org/wiki/N-body_problem#General_formulation">general formulation</a> gives the equations of motion</p>
+<p>$$
+\begin{equation}
+  m_i \frac{d^2 \vec{r}_i}{d t^2} = \sum_{j \ne i} \frac{ G m_i m_j (\vec{r}_j - \vec{r}_i) }{|\vec{r}_j - \vec{r}_i|^3}
+\end{equation}
+$$</p>
+<p>where $m_i, \vec{r}_i$ are the masses and positions of the $i^{\text{th}}$ particle. This model is Newton&#39;s laws (which are equivalent to the conservation of energy and momentum) plus Newton&#39;s law of gravity.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The numerical method we need to model uses the <a href="http://en.wikipedia.org/wiki/Semi-implicit_Euler_method"><em>semi-implicit Euler method</em></a><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> to update in time, and a <a href="http://en.wikipedia.org/wiki/N-body_problem#Few_bodies">direct particle-particle method</a> to compute the spatial interactions. The semi-implicit Euler method is first order accurate (with respect to the timestep $\Delta t$), and the particle-particle interactions are exact.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>That is, we can think of the algorithm as solving the ODE</p>
+<p>$$
+\begin{equation}
+  \frac{d y}{dt} = F(t, y)
+\end{equation}
+$$</p>
+<p>where the vector $y$ contains the positions $\vec{r}$ and velocities $\vec{v}$ of each body. Due to the physics of the problem (ie, there&#39;s a total energy that we want to conserve) there&#39;s an advantage in considering the positions and velocities separately, but when it comes to measure the error we don&#39;t need to do that: we just treat the <code>advance</code> function as an algorithm that takes the full vector $y_n$ as input and returns $y_{n+1}$.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What this means in practical terms is that we expect the error in time to have similar convergence rate behaviour to the standard Euler method discussed before: the convergence rate should be $1$, which can be checked both by the self-convergence being within $0.585$ and $1.585$, and also that the error in the convergence rate goes down by at least $1/3$ as the base resolution of $\Delta t$ is reduced by $2$. Checking the local truncation error would require more detailed analysis, but in principle should follow the same steps as before.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What&#39;s more interesting here is the additional checks from the complexities of the particle-particle interaction. We can use our previous techniques to check that the time update algorithm is behaving as expected. However, the particle-particle interaction itself contains many steps, and those also need testing.</p>
+<p>Let&#39;s check the output on (a copy of) the default input, taking a <em>single</em> step.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">copy</span>
+<span class="n">bodies</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">SYSTEM</span><span class="p">)</span>
+<span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">bodies</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">bodies</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">bodies</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">SYSTEM</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+[([1.598379730131437e-07, -3.018779686495645e-08, -3.730115986360403e-09], [1.598379730131437e-05, -3.018779686495645e-06, -3.7301159863604027e-07], 39.47841760435743), ([8.333218184594687, 4.1430349688596575, -0.40343728476075313], [-1.0148533649892928, 1.8236404735352374, 0.00861323535682711], 0.011286326131968767), ([4.847339930856543, -1.1321630550460413, -0.10387091638393478], [0.5908488391821772, 2.8156988981387063, -0.02488719128116714], 0.03769367487038949), ([15.389485801827046, -25.913363875177772, 0.17891118741867673], [0.9788686976130451, 0.5950734810190818, -0.034758553169444574], 0.0020336868699246304), ([12.905190971986693, -15.102456648865521, -0.22341579268383283], [1.0821409847561863, 0.8694752833109706, -0.010821379117708814], 0.0017237240570597112)]
+[([0.0, 0.0, 0.0], [0.0, 0.0, 0.0], 39.47841760435743), ([8.34336671824458, 4.124798564124305, -0.4035234171143214], [-1.0107743461787924, 1.8256623712304119, 0.008415761376584154], 0.011286326131968767), ([4.841431442464721, -1.1603200440274284, -0.10362204447112311], [0.606326392995832, 2.81198684491626, -0.02521836165988763], 0.03769367487038949), ([15.379697114850917, -25.919314609987964, 0.17925877295037118], [0.979090732243898, 0.5946989986476762, -0.034755955504078104], 0.0020336868699246304), ([12.894369562139131, -15.111151401698631, -0.22330757889265573], [1.0827910064415354, 0.8687130181696082, -0.010832637401363636], 0.0017237240570597112)]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Comparing these two is going to be a real pain. So, let&#39;s create a utility function that will give the difference between two configurations of bodies. It will return the differences in the locations and the velocities as arrays, but will also include the &quot;total&quot; error as a single number - the sum of the absolute values of all errors. If this norm is zero then the two configurations are identical.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">differences</span><span class="p">(</span><span class="n">bodies1</span><span class="p">,</span> <span class="n">bodies2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compare two configurations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">bodies1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">bodies2</span><span class="p">),</span> <span class="s">&quot;Configurations must have same number of bodies! {}, {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bodies1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">bodies2</span><span class="p">))</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">bodies1</span><span class="p">)</span>
+    <span class="n">d_positions</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="n">d_velocities</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+    <span class="n">norm_difference</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">d_positions</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bodies1</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bodies2</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">d_velocities</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bodies1</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">-</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bodies2</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">norm_difference</span> <span class="o">+=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">d_positions</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]))</span> <span class="o">+</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">d_velocities</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="p">:]))</span>
+    <span class="k">return</span> <span class="n">norm_difference</span><span class="p">,</span> <span class="n">d_positions</span><span class="p">,</span> <span class="n">d_velocities</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">norm1</span><span class="p">,</span> <span class="n">d_x</span><span class="p">,</span> <span class="n">d_v</span> <span class="o">=</span> <span class="n">differences</span><span class="p">(</span><span class="n">bodies</span><span class="p">,</span> <span class="n">SYSTEM</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">d_v</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+array([[  1.59837973e-05,  -3.01877969e-06,  -3.73011599e-07],
+       [ -4.07901881e-03,  -2.02189770e-03,   1.97473980e-04],
+       [ -1.54775538e-02,   3.71205322e-03,   3.31170379e-04],
+       [ -2.22034631e-04,   3.74482371e-04,  -2.59766537e-06],
+       [ -6.50021685e-04,   7.62265141e-04,   1.12582837e-05]])
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we have to think about how to test the particle-particle interaction. The parameter we can change in order to do the test is the configuration <code>bodies</code> (and the associated list of <code>pairs</code>, which we&#39;ll always take to be <code>combinations(bodies)</code>).</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So we can either change the positions, or the velocities, of the bodies, or their masses (or some combination of the three). What changes make meaningful tests?</p>
+<p>Well, the coordinates chosen should not matter, <em>if</em> we change them in a self-consistent way, <em>and</em> interpret the results appropriately. For example, if we <em>ran time backwards</em> by changing the direction of time (<code>dt</code> $\to$ <code>-dt</code>) and changing the sign of the velocities, then the results should be identical (after re-flipping the direction of time).</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">flip_time</span><span class="p">(</span><span class="n">bodies</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Flip the time by flipping the velocity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bodies</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">bodies</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1.0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">bodies_flip_time</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">SYSTEM</span><span class="p">)</span>
+<span class="n">flip_time</span><span class="p">(</span><span class="n">bodies_flip_time</span><span class="p">)</span>
+<span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">bodies_flip_time</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">bodies_flip_time</span><span class="p">))</span>
+<span class="n">flip_time</span><span class="p">(</span><span class="n">bodies_flip_time</span><span class="p">)</span>
+<span class="n">norm_flip_time</span><span class="p">,</span> <span class="n">d_x_flip_time</span><span class="p">,</span> <span class="n">d_v_flip_time</span> <span class="o">=</span> <span class="n">differences</span><span class="p">(</span><span class="n">bodies</span><span class="p">,</span> <span class="n">bodies_flip_time</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Norm of differences is {}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">norm_flip_time</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Norm of differences is 0.0.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As expected, the positions are identical. Note that the velocities are significantly different, because they still have the opposite sign, but if we flip the velocities back as well, then they will be identical.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Why did we do this? Because one of the first steps in debugging, and hence in testing, should be to <a href="http://software-carpentry.org/v5/novice/python/05-defensive.html#know-what-its-supposed-to-do">check the conservation laws</a>. This is just an example of a conservation law resulting from a symmetry: the consequence of <a href="http://en.wikipedia.org/wiki/Noether&#39;s_theorem">Emmy Noether&#39;s famous theorem</a>. There is a <a href="http://en.wikipedia.org/wiki/Symmetry_(physics)#Conservation_laws_and_symmetry">detailed list</a> of symmetries that a physical theory could have, each of which has an associated conservation law. Not all physical models obey all symmetries, and not every numerical  simulation obeys all the symmetries of the physical model (maybe due to boundary conditions, or numerical approximations). However, in the n-body case we expect a large number of these symmetries to hold, which we can check.</p>
+<p>These include:</p>
+<ul>
+<li>discrete parity symmetry (sending $\vec{r} \to -\vec{r}$)</li>
+<li>discrete time symmetry (sending $t \to -t$)</li>
+<li>discrete charge symmetry (not relevant here - no charges)</li>
+<li>continuous space translation ($\vec{r} \to \vec{r} + \vec{a}$)</li>
+<li>continuous space rotation</li>
+<li>continuous time translation (this is obeyed by the continuum model, but not by the numerical model)</li>
+<li>continuous conformal (like) symmetry ($t \to b t$, $\vec{r} \to b \vec{r}$, and $m \to b m$ all together).</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the first test where we &quot;ran time in reverse&quot; we were checking discrete time symmetry. We can now check the other symmetries systematically.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Discrete-space-symmetry">Discrete space symmetry<a class="anchor-link" href="#Discrete-space-symmetry">&#182;</a></h4>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We should be able to flip individual coordinates: if $y \to -y$ and $v_y \to -v_y$, for example, then  the evolution of the other coordinates and velocities should be unaffected (and if this flip is reversed after evolution, the position should be identical).</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">flip_coordinate</span><span class="p">(</span><span class="n">bodies</span><span class="p">,</span> <span class="n">coord</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Flip a single coordinate direction</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bodies</span><span class="p">)):</span>
+        <span class="n">bodies</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">coord</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1.0</span>
+        <span class="n">bodies</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">coord</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mf">1.0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">bodies_flip_coord</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">SYSTEM</span><span class="p">)</span>
+    <span class="n">flip_coordinate</span><span class="p">(</span><span class="n">bodies_flip_coord</span><span class="p">,</span> <span class="n">coord</span><span class="p">)</span>
+    <span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">bodies_flip_coord</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">bodies_flip_coord</span><span class="p">))</span>
+    <span class="n">flip_coordinate</span><span class="p">(</span><span class="n">bodies_flip_coord</span><span class="p">,</span> <span class="n">coord</span><span class="p">)</span>
+    <span class="n">norm_flip_coord</span><span class="p">,</span> <span class="n">d_x_flip_coord</span><span class="p">,</span> <span class="n">d_v_flip_coord</span> <span class="o">=</span> <span class="n">differences</span><span class="p">(</span><span class="n">bodies</span><span class="p">,</span> <span class="n">bodies_flip_coord</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Norm of differences is {} (flipped coordinate {}).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">norm_flip_coord</span><span class="p">,</span> <span class="n">coord</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Norm of differences is 0.0 (flipped coordinate 0).
+Norm of differences is 0.0 (flipped coordinate 1).
+Norm of differences is 0.0 (flipped coordinate 2).
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Continuous-space-translation">Continuous space translation<a class="anchor-link" href="#Continuous-space-translation">&#182;</a></h4>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next, note that only the <em>separation</em> between bodies is meant to matter. So if we arbitrarily translate all coordinates by some amount whilst leaving the velocities untouched, and reverse this after evolution, the result should be identical.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">translate_coordinate</span><span class="p">(</span><span class="n">bodies</span><span class="p">,</span> <span class="n">shift</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Translate the coordinates of all bodies</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bodies</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">bodies</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">+=</span> <span class="n">shift</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">shift</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="o">+</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="c"># Random coordinate shift in [-5, 5]</span>
+<span class="n">bodies_shift</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">SYSTEM</span><span class="p">)</span>
+<span class="n">translate_coordinate</span><span class="p">(</span><span class="n">bodies_shift</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+<span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">bodies_shift</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">bodies_shift</span><span class="p">))</span>
+<span class="n">translate_coordinate</span><span class="p">(</span><span class="n">bodies_shift</span><span class="p">,</span> <span class="o">-</span><span class="n">shift</span><span class="p">)</span>
+<span class="n">norm_shift</span><span class="p">,</span> <span class="n">d_x_shift</span><span class="p">,</span> <span class="n">d_v_shift</span> <span class="o">=</span> <span class="n">differences</span><span class="p">(</span><span class="n">bodies</span><span class="p">,</span> <span class="n">bodies_shift</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Norm of differences is {}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">norm_shift</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Norm of differences is 4.90930447899e-15.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this case the repeated operations introduce some floating point round-off error. This should be related to the round off introduced by the shift, and bounded by the number of bodies ($5$) multiplied by the total round-off introduced:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">spacing</span><span class="p">(</span><span class="n">shift</span><span class="p">)))</span><span class="o">*</span><span class="mi">5</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+8.8817841970012523e-15
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The precise differences are:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">print</span><span class="p">(</span><span class="n">d_x_shift</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">d_v_shift</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+[[ -6.62471615e-17  -1.58129974e-16  -2.14544258e-16]
+ [  1.77635684e-15   0.00000000e+00  -1.11022302e-16]
+ [  0.00000000e+00   0.00000000e+00  -1.38777878e-16]
+ [  0.00000000e+00   0.00000000e+00   3.33066907e-16]
+ [  1.77635684e-15   0.00000000e+00  -3.33066907e-16]]
+[[  0.00000000e+00   0.00000000e+00   6.88214270e-22]
+ [  0.00000000e+00   0.00000000e+00  -1.73472348e-18]
+ [  0.00000000e+00   0.00000000e+00   0.00000000e+00]
+ [  0.00000000e+00   0.00000000e+00   0.00000000e+00]
+ [  0.00000000e+00   0.00000000e+00   0.00000000e+00]]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We see that the some of the bodies have errors around the expected floating point limit, and these dominate the resulting error (which is well within the expected bound).</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Continuous-space-rotation">Continuous space rotation<a class="anchor-link" href="#Continuous-space-rotation">&#182;</a></h4>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Yet another coordinate transformation can be tried without affecting the results: a rotation. We&#39;ll pick three random Euler angles and <a href="http://en.wikipedia.org/wiki/Rotation_matrix#In_three_dimensions">set up the rotation matrix</a>. In general, we should do a translation first to ensure no body is at the origin (here, the Sun will be), to avoid specializing the problem, but given the generality of the code that&#39;s a very minor worry.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">rotate_bodies</span><span class="p">(</span><span class="n">bodies</span><span class="p">,</span> <span class="n">angles</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Rotate the coordinates of all bodies.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">Rx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="o">-</span><span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span>
+                      <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">0</span><span class="p">])]])</span>
+    <span class="n">Ry</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">1</span><span class="p">])],</span>
+                      <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+                      <span class="p">[</span><span class="o">-</span><span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">1</span><span class="p">])]])</span>
+    <span class="n">Rz</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="o">-</span><span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="mf">0.0</span><span class="p">],</span>
+                      <span class="p">[</span><span class="n">numpy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angles</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="mf">0.0</span><span class="p">],</span>
+                      <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+    <span class="k">if</span> <span class="n">invert</span><span class="p">:</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Rx</span><span class="p">,</span> <span class="n">Ry</span><span class="p">),</span> <span class="n">Rz</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Rz</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Ry</span><span class="p">,</span> <span class="n">Rx</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">bodies</span><span class="p">)):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bodies</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">bodies</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">xp</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+        <span class="n">vp</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">bodies</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">xp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+            <span class="n">bodies</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">vp</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">angles</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">4.0</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c"># Random Euler angles in [0, pi/4]</span>
+<span class="n">bodies_rotate</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">SYSTEM</span><span class="p">)</span>
+<span class="n">rotate_bodies</span><span class="p">(</span><span class="n">bodies_rotate</span><span class="p">,</span> <span class="n">angles</span><span class="p">)</span>
+<span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">bodies_rotate</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">bodies_rotate</span><span class="p">))</span>
+<span class="n">rotate_bodies</span><span class="p">(</span><span class="n">bodies_rotate</span><span class="p">,</span> <span class="o">-</span><span class="n">angles</span><span class="p">,</span> <span class="n">invert</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">norm_rotate</span><span class="p">,</span> <span class="n">d_x_rotate</span><span class="p">,</span> <span class="n">d_v_rotate</span> <span class="o">=</span> <span class="n">differences</span><span class="p">(</span><span class="n">bodies</span><span class="p">,</span> <span class="n">bodies_rotate</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Norm of differences is {}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">norm_rotate</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Norm of differences is 2.47683827851e-14.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The size of the differences is considerably larger, thanks to the number of operations performed. With three rotation matrices combined, each containing nine entries, applied to five bodies, we would expect a total error of the order of:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="mi">3</span><span class="o">*</span><span class="mi">9</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">spacing</span><span class="p">(</span><span class="n">angles</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+2.6229018956769323e-14
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Continuous-conformal-(like)-symmetry">Continuous conformal (like) symmetry<a class="anchor-link" href="#Continuous-conformal-(like)-symmetry">&#182;</a></h4>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We could also try scaling the coordinates and the masses. As the <a href="http://en.wikipedia.org/wiki/N-body_problem#General_formulation">force goes as</a> $M^2/L^2$, if we scale time, position and mass by the same amount then the results should not change. Note that because we scale <em>both</em> length and time, the velocity does not change.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">scale_bodies</span><span class="p">(</span><span class="n">bodies</span><span class="p">,</span> <span class="n">scale</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Scale coordinates and masses.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">bodies_scale</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="ow">in</span> <span class="n">bodies</span><span class="p">:</span>
+        <span class="n">new_x</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">new_v</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">new_m</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">scale</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">new_x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="n">scale</span>
+        <span class="n">bodies_scale</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">new_x</span><span class="p">,</span> <span class="n">new_v</span><span class="p">,</span> <span class="n">new_m</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">bodies_scale</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">scale</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">bodies_scale</span> <span class="o">=</span> <span class="n">scale_bodies</span><span class="p">(</span><span class="n">SYSTEM</span><span class="p">,</span> <span class="n">scale</span><span class="p">)</span>
+<span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">bodies_scale</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">bodies_scale</span><span class="p">))</span>
+<span class="n">bodies_rescale</span> <span class="o">=</span> <span class="n">scale_bodies</span><span class="p">(</span><span class="n">bodies_scale</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">scale</span><span class="p">)</span>
+<span class="n">norm_scale</span><span class="p">,</span> <span class="n">d_x_scale</span><span class="p">,</span> <span class="n">d_v_scale</span> <span class="o">=</span> <span class="n">differences</span><span class="p">(</span><span class="n">bodies</span><span class="p">,</span> <span class="n">bodies_rescale</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Norm of differences is {}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">norm_scale</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Norm of differences is 0.0.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This scaling does not <em>prove</em> that the force goes as $M^2/L^2$; it only shows that the force contains $M$ and $L$ to the same power. To show that it&#39;s got the appropriate form we should either <a href="http://software-carpentry.org/v5/novice/python/05-defensive.html#know-what-its-supposed-to-do">compare to an oracle or test simpler cases</a>. The <a href="http://benchmarksgame.alioth.debian.org/u32/benchmark.php?test=nbody&amp;lang=java">Java n-body code</a> is (likely) the oracle it was tested against; testing against a simpler case will be done later.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Convergence---continuous-time-translation">Convergence - continuous time translation<a class="anchor-link" href="#Convergence---continuous-time-translation">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Above, we noted that continuous time translation (which corresponds to conservation of energy) may not be perfectly retained by our <em>numerical method</em>, even though it is perfectly preserved by the theory. However, as we&#39;re solving an ODE in time, we can use the techniques applied to the phugoid model to ensure the numerical method is converging at the expected rate. As we&#39;re expecting the method to converge at first order, we need the error in the measured self-convergence rate to reduce by at least $1/3$ when the resolution (in time) is reduced by $2$.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">T</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="c"># The base resolution will take 1000 steps</span>
+<span class="n">dt_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.01</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+<span class="n">bodies_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dt_values</span><span class="p">):</span>
+    <span class="n">bodies_loop</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">SYSTEM</span><span class="p">)</span>
+    <span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">),</span> <span class="n">bodies</span><span class="o">=</span><span class="n">bodies_loop</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">bodies_loop</span><span class="p">))</span>
+    <span class="n">bodies_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bodies_loop</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">convergence_rate</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">convergence_rate</span><span class="p">)):</span>
+    <span class="n">numerator</span><span class="p">,</span> <span class="n">diff_x</span><span class="p">,</span> <span class="n">diff_v</span><span class="o">=</span> <span class="n">differences</span><span class="p">(</span><span class="n">bodies_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bodies_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">denominator</span><span class="p">,</span> <span class="n">diff_x</span><span class="p">,</span> <span class="n">diff_v</span> <span class="o">=</span> <span class="n">differences</span><span class="p">(</span><span class="n">bodies_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">bodies_list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">convergence_rate</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">numerator</span><span class="o">/</span><span class="n">denominator</span><span class="p">)</span><span class="o">/</span><span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Convergence rate (base dt={}) is {} (error {}).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">dt_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">convergence_rate</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">convergence_rate</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Is the convergence rate close enough to 1 for the answers to match? {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">convergence_rate</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span><span class="o">/</span><span class="n">numpy</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Does the convergence of the convergence rate show it&#39;s close enough to 1? {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">convergence_rate</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">2.0</span><span class="o">/</span><span class="mf">3.0</span><span class="o">*</span><span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">convergence_rate</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">1.0</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Convergence rate (base dt=0.01) is 0.996457140741 (error 0.00354285925877).
+Convergence rate (base dt=0.005) is 0.998222719909 (error 0.00177728009084).
+Is the convergence rate close enough to 1 for the answers to match? True
+Does the convergence of the convergence rate show it&apos;s close enough to 1? True
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This shows that the time evolution is close enought to first order as expected. We haven&#39;t explicitly shown that it&#39;s the semi-implicit Euler method, as explicitly calculating the local truncation error would be a lot of work, and in this case we&#39;re really not interested in the specific time integration scheme - just that it converges.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Checking-the-specific-force-law">Checking the specific force law<a class="anchor-link" href="#Checking-the-specific-force-law">&#182;</a></h2>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In order to check that we&#39;ve really implemented Newton&#39;s law of gravity, we need to test a very simplified situation where we can predict the precise answer. Let&#39;s set up a two body problem starting from rest.</p>
+<p>Once we&#39;ve done that, we can vary one parameter and check that the acceleration behaves as expected. The two cases we have are varying a mass, so that if $m_1 \to b m_1$ then</p>
+<p>$$
+\begin{equation}
+  \vec{a}_2(b) = b \vec{a_2}(1)
+\end{equation}
+$$</p>
+<p>and varying separation $|\vec{r}_1 - \vec{r}_2|$ so that $|\vec{r}_1 - \vec{r}_2| \to c |\vec{r}_1 - \vec{r}_2|$</p>
+<p>$$
+\begin{equation}
+  \vec{a}_2(c) =  c^{-2} \vec{a}(1).
+\end{equation}
+$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Over a single timestep $\Delta t$ we can approximate the acceleration as</p>
+<p>$$
+\begin{equation}
+  \vec{a}_2(t=0) \simeq \frac{\vec{v}_2(t=\Delta t) - \vec{v}_2(t=0)}{\Delta t}.
+\end{equation}
+$$</p>
+<p>For <em>this specific algorithm</em> we have that </p>
+<p>$$
+\begin{equation}
+   \vec{v}_2(t=\Delta t) = \vec{v}_2(t=0) + \Delta t \, \vec{a}_2(t=0),
+\end{equation}
+$$</p>
+<p>which means that the approximation for the acceleration is, in fact, exact:</p>
+<p>$$
+\begin{equation}
+  \vec{a}_2(t=0) = \frac{\vec{v}_2(t=\Delta t) - \vec{v}_2(t=0)}{\Delta t}.
+\end{equation}
+$$</p>
+<p>For a general algorithm we would have a first order in $\Delta t$ error in our approximation to the acceleration, so would have to use Richardson extrapolation methods as before in order to calculate the acceleration, and hence check the force.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">body_1</span> <span class="o">=</span> <span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">SOLAR_MASS</span><span class="p">)</span>
+<span class="n">body_2</span> <span class="o">=</span> <span class="p">([</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">SOLAR_MASS</span><span class="p">)</span>
+<span class="n">body_1_2_separation</span> <span class="o">=</span> <span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">SOLAR_MASS</span><span class="p">)</span>
+<span class="n">body_1_2_mass</span> <span class="o">=</span> <span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="mf">0.2</span><span class="o">*</span><span class="n">SOLAR_MASS</span><span class="p">)</span>
+<span class="n">two_bodies</span> <span class="o">=</span> <span class="p">[</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">body_1</span><span class="p">),</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">body_2</span><span class="p">)]</span>
+<span class="n">two_bodies_2_separation</span> <span class="o">=</span> <span class="p">[</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">body_1_2_separation</span><span class="p">),</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">body_2</span><span class="p">)]</span>
+<span class="n">two_bodies_2_mass</span> <span class="o">=</span> <span class="p">[</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">body_1_2_mass</span><span class="p">),</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">body_2</span><span class="p">)]</span>
+<span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">two_bodies</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">two_bodies</span><span class="p">))</span>
+<span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">two_bodies_2_separation</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">two_bodies_2_separation</span><span class="p">))</span>
+<span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">two_bodies_2_mass</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">two_bodies_2_mass</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;The acceleration (hence velocity) should decrease as separation^2&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;So these two numbers should match: {} {} (difference: {})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">two_bodies</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> 
+        <span class="n">two_bodies_2_separation</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">4.0</span><span class="p">,</span>
+        <span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">two_bodies</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">two_bodies_2_separation</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mf">4.0</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;The acceleration (hence velocity) should increase as mass^1&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;So these two numbers should match: {} {} (difference: {})&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">two_bodies</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> 
+        <span class="n">two_bodies_2_mass</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">2.0</span><span class="p">,</span>
+        <span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">two_bodies</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">two_bodies_2_mass</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+The acceleration (hence velocity) should decrease as separation^2
+So these two numbers should match: 0.00986960440109 0.00986960440109 (difference: 0.0)
+The acceleration (hence velocity) should increase as mass^1
+So these two numbers should match: 0.00986960440109 0.00986960440109 (difference: 0.0)
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Of course, we could have just got (un)lucky in comparing single data points when we vary either $b$ or $c$. Instead we can choose a set of points at random, and fit to a more general model; for example, fit to</p>
+<p>$$
+\begin{equation}
+  \vec{a}_2 (b) = \sum_{i=0}^4 p_i b^i
+\end{equation}
+$$</p>
+<p>or</p>
+<p>$$
+\begin{equation}
+  \vec{a}_2 (c) = \sum_{i=0}^4 p_i c^{-i}:
+\end{equation}
+$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">bodies_list_separation</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">separation_scale</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">separations</span> <span class="o">=</span> <span class="n">separation_scale</span> <span class="o">+</span> <span class="mf">1.0</span>
+<span class="n">separation_v</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">separations</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">separation_scale</span><span class="p">):</span>
+    <span class="n">body_1_separation</span> <span class="o">=</span> <span class="p">([</span><span class="n">scale</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">SOLAR_MASS</span><span class="p">)</span>
+    <span class="n">two_bodies_separation</span> <span class="o">=</span> <span class="p">[</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">body_1_separation</span><span class="p">),</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">body_2</span><span class="p">)]</span>
+    <span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">two_bodies_separation</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">two_bodies_separation</span><span class="p">))</span>
+    <span class="n">bodies_list_separation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">two_bodies_separation</span><span class="p">)</span>
+    <span class="n">separation_v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">two_bodies_separation</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    
+<span class="n">bodies_list_mass</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">mass_scale</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">masses</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">mass_scale</span>
+<span class="n">mass_v</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mass_scale</span><span class="p">):</span>
+    <span class="n">body_1_mass</span> <span class="o">=</span> <span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">scale</span><span class="o">*</span><span class="n">SOLAR_MASS</span><span class="p">)</span>
+    <span class="n">two_bodies_mass</span> <span class="o">=</span> <span class="p">[</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">body_1_mass</span><span class="p">),</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">body_2</span><span class="p">)]</span>
+    <span class="n">advance</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">bodies</span><span class="o">=</span><span class="n">two_bodies_mass</span><span class="p">,</span> <span class="n">pairs</span><span class="o">=</span><span class="n">combinations</span><span class="p">(</span><span class="n">two_bodies_mass</span><span class="p">))</span>
+    <span class="n">bodies_list_mass</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">two_bodies_mass</span><span class="p">)</span>
+    <span class="n">mass_v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">two_bodies_mass</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">p_separation</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="n">separations</span><span class="p">,</span> <span class="n">separation_v</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">separations</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">p_mass</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">masses</span><span class="p">,</span> <span class="n">mass_v</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">masses</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;We expect the third-to-last (separation^{-2}) coefficient to dominate:&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Coefficients from separation: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p_separation</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Coefficient of separation^{{-2}}: {:.5g}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p_separation</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">]))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Largest other coefficient: {:.5g}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">p_separation</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">)))))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;We expect the second-to-last (mass^{1}) coefficient to dominate:&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Coefficients from mass: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p_mass</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Coefficient of mass^{{1}}: {:.5g}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p_mass</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Largest other coefficient: {:.5g}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">p_mass</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">)))))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+We expect the third-to-last (separation^{-2}) coefficient to dominate:
+Coefficients from separation: [ -2.74380513e-13   8.12379888e-13   3.94784176e-02   4.24900861e-13
+  -7.51055797e-14]
+Coefficient of separation^{-2}: 0.039478
+Largest other coefficient: 8.1238e-13
+We expect the second-to-last (mass^{1}) coefficient to dominate:
+Coefficients from mass: [ -2.08084678e-12   3.11409051e-13  -1.59477396e-14   9.86960440e-02
+  -2.61829774e-18]
+Coefficient of mass^{1}: 0.098696
+Largest other coefficient: 2.0808e-12
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We we see that the expected coefficient dominates, but we&#39;re not getting a fit that&#39;s absolutely perfect. This is likely due to the limitations of the fitting algorithm.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, we have an algorithm that</p>
+<ul>
+<li>obeys all the expected symmetries;</li>
+<li>depends on the size of the separation and the mass only;</li>
+<li>scales as expected with mass and separation.</li>
+</ul>
+<p>This strongly suggests that it implements Newton&#39;s laws, and the force term that&#39;s implemented has the form</p>
+<p>$$
+  \vec{F} = G \frac{m_1 m_2 (\vec{r}_2 - \vec{r}_1)}{|\vec{r}_2 - \vec{r}_1|^3}.
+$$</p>
+<p>The only remaining question: is the value of $G$ correct?</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our previous calculations give us the value of $G$ internal to the algorithm; we just take our value for the acceleration $\vec{a}_2 = \vec{F}/m_2$ and take out the masses and separations:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">separation</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">mass</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">two_bodies</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">mass</span><span class="o">*</span><span class="n">separation</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">dt</span> 
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Algorithm G, in units of AU^3 SolarMass^{{-1}} years^{{-2}}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">G</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Algorithm G, in units of AU^3 SolarMass^{-1} years^{-2}: 39.4784176044
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">constants</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Accepted value of G, in units of {}: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">constants</span><span class="o">.</span><span class="n">unit</span><span class="p">(</span><span class="s">&#39;Newtonian constant of gravitation&#39;</span><span class="p">),</span> 
+        <span class="n">constants</span><span class="o">.</span><span class="n">G</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Accepted value of G, in units of m^3 kg^-1 s^-2: 6.67384e-11
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">solar_mass_in_kg</span> <span class="o">=</span> <span class="mf">1.9891e30</span>
+<span class="n">year_in_seconds</span> <span class="o">=</span> <span class="mf">3.15569e7</span>
+<span class="n">AU_in_metres</span> <span class="o">=</span> <span class="mf">149597870700.0</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Algorithm G, in units of m^3 kg^-1 s^-2: {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">G</span><span class="o">*</span><span class="p">(</span><span class="n">AU_in_metres</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="p">(</span><span class="n">solar_mass_in_kg</span><span class="p">)</span><span class="o">/</span><span class="n">year_in_seconds</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Algorithm G, in units of m^3 kg^-1 s^-2: 6.67253235347e-11
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So the constants agree to four significant figures; without more in-depth knowledge of the original implementation, this might just reflect experimental uncertainties in the knowledge of $G$ at the time. Given the <a href="http://en.wikipedia.org/wiki/Gravitational_constant#Laws_and_constants">experimental uncertainty</a> in the value of the gravitational constant, I would say this check is close enough.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Footnotes">Footnotes<a class="anchor-link" href="#Footnotes">&#182;</a></h5>
+</div>
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="footnotes"><ol>
+    <li class="footnote" id="fn:1">
+        <p>The method that got me to this conclusion is a classic <em>just Google it</em> style, as follows. Looking at the original n-body example there&#39;s no useful documentation, but the <a href="http://benchmarksgame.alioth.debian.org/u32/performance.php?test=nbody#about">about section</a> says that is uses a simple <a href="http://en.wikipedia.org/wiki/Symplectic_integrator">symplectic integrator</a>. The <a href="http://en.wikipedia.org/wiki/Symplectic_integrator#A_first-order_example">first order example</a> is the <a href="http://en.wikipedia.org/wiki/Semi-implicit_Euler_method">semi-implicit Euler method</a>, which appears to match the code. <a href="#fnref:1" title="return to article"> ↩</a><p>
+    </li>
+</ol></div>
+</div>
+</div>
+</div></p>
+<hr />
+<p>You can <a href="http://IanHawke.github.io/blog/notebooks/04-n-body-test.ipynb">download this notebook</a>.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+    <p>
+        <strong>About Ian Hawke</strong><br/>
+        Ian Hawke, numerical relativist, Southampton
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://twitter.com/IanHawke"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://github.com/IanHawke"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+              </ul>
+            </li>
+
+
+
+            <li class="list-group-item"><a href="http://IanHawke.github.io/blog/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="http://IanHawke.github.io/blog/tag/python.html">
+                            Python
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 Ian Hawke
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://IanHawke.github.io/blog/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://IanHawke.github.io/blog/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://IanHawke.github.io/blog/theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = 'http://IanHawke.github.io/blog/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'IanHawke',
+                count: 5,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="http://IanHawke.github.io/blog/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+
+</body>
+</html>

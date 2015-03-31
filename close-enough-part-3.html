@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en"
+>
+<head>
+    <title>Close Enough Part 3 - Ian Hawke</title>
+    <!-- Using the latest rendering mode for IE -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+<style type="text/css">
+
+/*some stuff for output/input prompts*/
+div.cell{border:1px solid transparent;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch}div.cell.selected{border-radius:4px;border:thin #ababab solid}
+div.cell.edit_mode{border-radius:4px;border:thin #008000 solid}
+div.cell{width:100%;padding:5px 5px 5px 0;margin:0;outline:none}
+div.prompt{min-width:11ex;padding:.4em;margin:0;font-family:monospace;text-align:right;line-height:1.21429em}
+@media (max-width:480px){div.prompt{text-align:left}}div.inner_cell{display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;display:flex;flex-direction:column;align-items:stretch;-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;flex:1}
+div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;line-height:1.21429em}
+div.prompt:empty{padding-top:0;padding-bottom:0}
+div.input{page-break-inside:avoid;display:-webkit-box;-webkit-box-orient:horizontal;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:horizontal;-moz-box-align:stretch;display:box;box-orient:horizontal;box-align:stretch;}
+div.inner_cell{width:90%;}
+div.input_area{border:1px solid #cfcfcf;border-radius:4px;background:#f7f7f7;}
+div.input_prompt{color:navy;border-top:1px solid transparent;}
+div.output_wrapper{margin-top:5px;position:relative;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
+div.output_scroll{height:24em;width:100%;overflow:auto;border-radius:4px;-webkit-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);-moz-box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);box-shadow:inset 0 2px 8px rgba(0, 0, 0, 0.8);}
+div.output_collapsed{margin:0px;padding:0px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;display:-moz-box;-moz-box-orient:vertical;-moz-box-align:stretch;display:box;box-orient:vertical;box-align:stretch;width:100%;}
+div.out_prompt_overlay{height:100%;padding:0px 0.4em;position:absolute;border-radius:4px;}
+div.out_prompt_overlay:hover{-webkit-box-shadow:inset 0 0 1px #000000;-moz-box-shadow:inset 0 0 1px #000000;box-shadow:inset 0 0 1px #000000;background:rgba(240, 240, 240, 0.5);}
+div.output_prompt{color:darkred;}
+
+a.anchor-link:link{text-decoration:none;padding:0px 20px;visibility:hidden;}
+h1:hover .anchor-link,h2:hover .anchor-link,h3:hover .anchor-link,h4:hover .anchor-link,h5:hover .anchor-link,h6:hover .anchor-link{visibility:visible;}
+/* end stuff for output/input prompts*/
+
+
+.highlight-ipynb .hll { background-color: #ffffcc }
+.highlight-ipynb  { background: #f8f8f8; }
+.highlight-ipynb .c { color: #408080; font-style: italic } /* Comment */
+.highlight-ipynb .err { border: 1px solid #FF0000 } /* Error */
+.highlight-ipynb .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight-ipynb .o { color: #666666 } /* Operator */
+.highlight-ipynb .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight-ipynb .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight-ipynb .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight-ipynb .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight-ipynb .gd { color: #A00000 } /* Generic.Deleted */
+.highlight-ipynb .ge { font-style: italic } /* Generic.Emph */
+.highlight-ipynb .gr { color: #FF0000 } /* Generic.Error */
+.highlight-ipynb .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight-ipynb .gi { color: #00A000 } /* Generic.Inserted */
+.highlight-ipynb .go { color: #888888 } /* Generic.Output */
+.highlight-ipynb .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight-ipynb .gs { font-weight: bold } /* Generic.Strong */
+.highlight-ipynb .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight-ipynb .gt { color: #0044DD } /* Generic.Traceback */
+.highlight-ipynb .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight-ipynb .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight-ipynb .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight-ipynb .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight-ipynb .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight-ipynb .kt { color: #B00040 } /* Keyword.Type */
+.highlight-ipynb .m { color: #666666 } /* Literal.Number */
+.highlight-ipynb .s { color: #BA2121 } /* Literal.String */
+.highlight-ipynb .na { color: #7D9029 } /* Name.Attribute */
+.highlight-ipynb .nb { color: #008000 } /* Name.Builtin */
+.highlight-ipynb .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight-ipynb .no { color: #880000 } /* Name.Constant */
+.highlight-ipynb .nd { color: #AA22FF } /* Name.Decorator */
+.highlight-ipynb .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight-ipynb .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight-ipynb .nf { color: #0000FF } /* Name.Function */
+.highlight-ipynb .nl { color: #A0A000 } /* Name.Label */
+.highlight-ipynb .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight-ipynb .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight-ipynb .nv { color: #19177C } /* Name.Variable */
+.highlight-ipynb .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight-ipynb .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight-ipynb .mf { color: #666666 } /* Literal.Number.Float */
+.highlight-ipynb .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight-ipynb .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight-ipynb .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight-ipynb .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight-ipynb .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight-ipynb .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight-ipynb .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight-ipynb .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight-ipynb .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight-ipynb .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight-ipynb .sx { color: #008000 } /* Literal.String.Other */
+.highlight-ipynb .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight-ipynb .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight-ipynb .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight-ipynb .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight-ipynb .vc { color: #19177C } /* Name.Variable.Class */
+.highlight-ipynb .vg { color: #19177C } /* Name.Variable.Global */
+.highlight-ipynb .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight-ipynb .il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+div.entry-content {
+  overflow: visible;
+  padding: 8px;
+}
+.input_area {
+  padding: 0.2em;
+}
+
+a.heading-anchor {
+ white-space: normal;
+}
+
+.rendered_html
+code {
+ font-size: .8em;
+}
+
+pre.ipynb {
+  color: black;
+  background: #f7f7f7;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding: 0;
+  margin: 0px;
+  font-size: 13px;
+}
+
+/* remove the prompt div from text cells */
+div.text_cell .prompt {
+    display: none;
+}
+
+/* remove horizontal padding from text cells, */
+/* so it aligns with outer body text */
+div.text_cell_render {
+    padding: 0.5em 0em;
+}
+
+img.anim_icon{padding:0; border:0; vertical-align:middle; -webkit-box-shadow:none; -box-shadow:none}
+</style>
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+<script type="text/javascript">
+init_mathjax = function() {
+    if (window.MathJax) {
+        // MathJax loaded
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+            },
+            displayAlign: 'left', // Change this to 'center' to center equations.
+            "HTML-CSS": {
+                styles: {'.MathJax_Display': {"margin": 0}}
+            }
+        });
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    }
+}
+init_mathjax();
+</script>
+
+<link rel="canonical" href="http://IanHawke.github.io/blog/close-enough-part-3.html">
+
+        <meta name="author" content="Ian Hawke" />
+        <meta name="keywords" content="Python" />
+        <meta name="description" content="The third in the series, this example shows how to test that a specific algorithm is really implemented correctly." />
+
+        <meta property="og:site_name" content="Ian Hawke" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="Close Enough Part 3"/>
+        <meta property="og:url" content="http://IanHawke.github.io/blog/close-enough-part-3.html"/>
+        <meta property="og:description" content="The third in the series, this example shows how to test that a specific algorithm is really implemented correctly."/>
+        <meta property="article:published_time" content="2015-03-28" />
+            <meta property="article:section" content="Testing" />
+            <meta property="article:tag" content="Python" />
+            <meta property="article:author" content="Ian Hawke" />
+
+
+    <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://IanHawke.github.io/blog/theme/css/bootstrap.min.css" type="text/css"/>
+    <link href="http://IanHawke.github.io/blog/theme/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="http://IanHawke.github.io/blog/theme/css/pygments/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://IanHawke.github.io/blog/theme/css/style.css" type="text/css"/>
+
+        <link href="http://IanHawke.github.io/blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Ian Hawke ATOM Feed"/>
+
+</head>
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="http://IanHawke.github.io/blog/" class="navbar-brand">
+Ian Hawke            </a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="http://IanHawke.github.io/blog/archives.html"><i class="fa fa-th-list"></i><span class="icon-label">Archives</span></a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+</div> <!-- /.navbar -->
+<!-- Banner -->
+<!-- End Banner -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://IanHawke.github.io/blog/close-enough-part-3.html"
+                       rel="bookmark"
+                       title="Permalink to Close Enough Part 3">
+                        Close Enough Part 3
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
+<footer class="post-info">
+    <span class="label label-default">Date</span>
+    <span class="published">
+        <i class="fa fa-calendar"></i><time datetime="2015-03-28T00:00:00+00:00"> Sat 28 March 2015</time>
+    </span>
+
+
+
+<span class="label label-default">Tags</span>
+	<a href="http://IanHawke.github.io/blog/tag/python.html">Python</a>
+    
+</footer><!-- /.post-info -->                    </div>
+                </div>
+                <!-- the next line is the key to include the notebook here: -->
+
+<p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$$
+\newcommand{\dt}{\Delta t}
+\newcommand{\udt}[1]{u^{({#1})}(T)}
+\newcommand{\Edt}[1]{E^{({#1})}}
+\newcommand{\uone}[1]{u_{1}^{({#1})}}
+$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the previous cases we&#39;ve focused on the <em>behaviour</em> of the algorithm: whether it will give the correct answer in the limit, or whether it converges as expected.  This is really what you want to do: you&#39;re trying to do science, to get an answer, and so implementing the precise algorithm should be secondary.  If you are trying to implement a precise algorithm, it should be because of its (expected) behaviour, and so you should be testing for that!</p>
+<p>However, let&#39;s put that aside and see if we can work out how to test whether we&#39;ve implemented exactly the algorithm we want: Euler&#39;s method. Checking convergence alone is not enough: the <a href="http://en.wikipedia.org/wiki/Backward_Euler_method">Backwards Euler method</a> has identical convergence behaviour, as do whole families of other methods. We need a check that characterizes the method uniquely.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <em>local truncation error</em> $\Edt{\dt}$ would be exactly such a check. This is the error produced by a single step from exact data, eg</p>
+<p>$$
+\begin{equation}
+  \Edt{\dt} = u_1 - u(\dt).
+\end{equation}
+$$</p>
+<p>For Euler&#39;s method we have</p>
+<p>$$
+\begin{equation}
+  u_{n+1} = u_n + \dt f(t_n, u_n)
+\end{equation}
+$$</p>
+<p>and so</p>
+<p>$$
+\begin{equation}
+  \Edt{\dt} = \left| u_0 + \dt f(0, u_0) - u(\dt) \right| =  \left| \frac{\dt^2}{2} \left. u''\right|_{t=0} \right| + {\cal O}(\dt^3).
+\end{equation}
+$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is all well and good, but we don&#39;t know the exact solution (in principle) at any point other than $t=0$, so cannot compute $u(\dt)$, so cannot compute $\Edt{\dt}$. We only know $\uone{\dt}$ for whichever values of $\dt$ we wish to compute.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can use repeated Richardson extrapolation to get the solution $u(\dt)$ to sufficient accuracy, however. On the <em>assumption</em> that the algorithm is first order (we can use the previous techniques to check this), we can use Richardson extrapolation to repeatedly remove the highest order error terms. We can thus find the local truncation errors.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">log</span><span class="p">,</span> <span class="n">ceil</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span>
+<span class="o">%</span><span class="k">matplotlib</span> <span class="n">inline</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;serif&#39;</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s">&#39;font.size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="c"># model parameters:</span>
+<span class="n">g</span> <span class="o">=</span> <span class="mf">9.8</span>      <span class="c"># gravity in m s^{-2}</span>
+<span class="n">v_t</span> <span class="o">=</span> <span class="mf">30.0</span>   <span class="c"># trim velocity in m s^{-1}   </span>
+<span class="n">C_D</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mf">40.</span>  <span class="c"># drag coefficient --- or D/L if C_L=1</span>
+<span class="n">C_L</span> <span class="o">=</span> <span class="mf">1.0</span>    <span class="c"># for convenience, use C_L = 1</span>
+
+<span class="c">### set initial conditions ###</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="n">v_t</span>     <span class="c"># start at the trim velocity (or add a delta)</span>
+<span class="n">theta0</span> <span class="o">=</span> <span class="mf">0.0</span> <span class="c"># initial angle of trajectory</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">0.0</span>     <span class="c"># horizotal position is arbitrary</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="mf">1000.0</span>  <span class="c"># initial altitude</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">u</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the right-hand side of the phugoid system of equations.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    u : array of float</span>
+<span class="sd">        array containing the solution at time n.</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dudt : array of float</span>
+<span class="sd">        array containing the RHS given u.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">v</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">g</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">-</span> <span class="n">C_D</span><span class="o">/</span><span class="n">C_L</span><span class="o">*</span><span class="n">g</span><span class="o">/</span><span class="n">v_t</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+                      <span class="o">-</span><span class="n">g</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">/</span><span class="n">v</span> <span class="o">+</span> <span class="n">g</span><span class="o">/</span><span class="n">v_t</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="p">,</span>
+                      <span class="n">v</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span>
+                      <span class="n">v</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">euler_step</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the solution at the next time-step using Euler&#39;s method.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    u : array of float</span>
+<span class="sd">        solution at the previous time-step.</span>
+<span class="sd">    f : function</span>
+<span class="sd">        function to compute the right hand-side of the system of equation.</span>
+<span class="sd">    dt : float</span>
+<span class="sd">        time-increment.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    u_n_plus_1 : array of float</span>
+<span class="sd">        approximate solution at the next time step.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">return</span> <span class="n">u</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">f</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">T_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.001</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)])</span>
+<span class="n">lte_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">T_values</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">T</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">T_values</span><span class="p">):</span>
+    <span class="n">dt_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">T</span><span class="o">*</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">8</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)])</span>
+    <span class="n">v_values</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">dt_values</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dt_values</span><span class="p">):</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">T</span><span class="o">/</span><span class="n">dt</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">N</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">v0</span><span class="p">,</span> <span class="n">theta0</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">euler_step</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">f</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+        <span class="n">v_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">v_next</span> <span class="o">=</span> <span class="n">v_values</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">v_values</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
+        <span class="n">v_next</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">s</span><span class="o">*</span><span class="n">v_next</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">-</span><span class="n">v_next</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="n">s</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">lte_values</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">v_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">v_next</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">lte_values</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+array([  1.99954897e-09,   8.05573563e-09,   3.26825287e-08,
+         1.34407252e-07,   5.67045063e-07,   2.50349015e-06,
+         1.18961299e-05,   6.26360623e-05,   3.70836832e-04,
+         2.44291651e-03])
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now have four values for the local truncation error. We can thus compute the convergence rate of the local truncation error itself (which should be two), and check that it is close enough to the expected value using the previous techniques:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">s_m</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">s_m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">log</span><span class="p">(</span><span class="nb">abs</span><span class="p">((</span><span class="n">lte_values</span><span class="p">[</span><span class="mi">2</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">lte_values</span><span class="p">[</span><span class="mi">1</span><span class="o">+</span><span class="n">i</span><span class="p">])</span><span class="o">/</span>
+                     <span class="p">(</span><span class="n">lte_values</span><span class="p">[</span><span class="mi">1</span><span class="o">+</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">lte_values</span><span class="p">[</span><span class="mi">0</span><span class="o">+</span><span class="n">i</span><span class="p">])))</span> <span class="o">/</span> <span class="n">log</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Measured convergence rate (base dt {}) is {:.6g} (error is {:.4g}).&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">T_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s_m</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="nb">abs</span><span class="p">(</span><span class="n">s_m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Convergence error has reduced by factor {:.4g}.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="nb">abs</span><span class="p">(</span><span class="n">s_m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">s_m</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mi">2</span><span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Measured convergence rate (base dt 0.001) is 2.02375 (error is 0.02375).
+Measured convergence rate (base dt 0.002) is 2.04637 (error is 0.04637).
+Convergence error has reduced by factor 0.5121.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So the error has gone down considerably, and certainly $0.51 &lt; 2/3$, so the convergence rate of the local truncation error is close enough to 2.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, that alone isn&#39;t enough to determine that this really is Euler&#39;s method: as noted above, the convergence rate of the local truncation error isn&#39;t the key point: the key point is that we can predict its <em>actual value</em> as</p>
+<p>$$
+\begin{equation}
+  \Edt{\dt} =  \frac{\dt^2}{2} \left| \left. u''\right|_{t=0} \right| + {\cal O}(\dt^3) = \frac{\dt^2}{2} \left| \left( \left. \frac{\partial f}{\partial t} \right|_{t=0} + f(0, u_0) \left. \frac{\partial f}{\partial u} \right|_{t=0, u=u_0} \right) \right|.
+\end{equation}
+$$</p>
+<p>For the specific problem considered here we have</p>
+<p>$$
+\begin{equation}
+  u = \begin{pmatrix} v \\ \theta \\ x \\ y \end{pmatrix}, \quad f = \begin{pmatrix} -g\sin \theta - \frac{C_D}{C_L} \frac{g}{v_t^2} v^2 \\ -\frac{g}{v}\cos \theta + \frac{g}{v_t^2} v \\ v \cos \theta \\ v \sin \theta \end{pmatrix}.
+\end{equation}
+$$</p>
+<p>We note that $f$ does not explicitly depend on $t$ (so $\partial f / \partial t \equiv 0$), and that the values of the parameters $g, C_D, C_L$ and $v_t$ are given above, along with the initial data $u_0 = (v_0, \theta_0, x_0, y_0)$.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, let&#39;s find what the local truncation error should be.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">sympy</span>
+<span class="n">sympy</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
+<span class="n">v</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">CD</span><span class="p">,</span> <span class="n">CL</span><span class="p">,</span> <span class="n">vt</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s">&#39;v, theta, x, y, g, C_D, C_L, v_t, {\Delta}t&#39;</span><span class="p">)</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="n">v</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">sympy</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span><span class="o">-</span><span class="n">g</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">-</span><span class="n">CD</span><span class="o">/</span><span class="n">CL</span><span class="o">*</span><span class="n">g</span><span class="o">/</span><span class="n">vt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> 
+                  <span class="o">-</span><span class="n">g</span><span class="o">/</span><span class="n">v</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span><span class="o">+</span><span class="n">g</span><span class="o">/</span><span class="n">vt</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">v</span><span class="p">,</span> 
+                  <span class="n">v</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> 
+                  <span class="n">v</span><span class="o">*</span><span class="n">sympy</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span>
+<span class="n">dfdu</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">jacobian</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+<span class="n">lte</span><span class="o">=</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">dfdu</span><span class="o">*</span><span class="n">f</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">lte_0</span><span class="o">=</span><span class="n">lte</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">g</span><span class="p">,</span><span class="mf">9.8</span><span class="p">),(</span><span class="n">vt</span><span class="p">,</span><span class="mf">30.0</span><span class="p">),(</span><span class="n">CD</span><span class="p">,</span><span class="mf">1.0</span><span class="o">/</span><span class="mf">40.0</span><span class="p">),(</span><span class="n">CL</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),(</span><span class="n">v</span><span class="p">,</span><span class="mf">30.0</span><span class="p">),(</span><span class="n">theta</span><span class="p">,</span><span class="mf">0.0</span><span class="p">),(</span><span class="n">x</span><span class="p">,</span><span class="mf">0.0</span><span class="p">),(</span><span class="n">y</span><span class="p">,</span><span class="mf">1000.0</span><span class="p">)])</span>
+<span class="n">lte_0</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+
+
+<div class="output_latex output_subarea output_pyout">
+$$\left[\begin{matrix}0.00200083333333333 {\Delta}t^{2}\\- 0.00266777777777778 {\Delta}t^{2}\\- 0.1225 {\Delta}t^{2}\\0\end{matrix}\right]$$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So let us check the local truncation error values, which are computed for <code>v</code>:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">lte_exact</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lte_0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">lte_values</span><span class="o">/</span><span class="n">T_values</span><span class="o">**</span><span class="mi">2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+array([ 0.00199955,  0.00201393,  0.00204266,  0.00210011,  0.00221502,
+        0.00244481,  0.00290433,  0.003823  ,  0.00565852,  0.00931899])
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>These are indeed converging towards $0.002 \dt^2$ as they should. To check this quantitatively, we use that our model is</p>
+<p>$$
+\begin{equation}
+  \Edt{\dt} = \alpha \dt^2 + {\cal O}(\dt^3),
+\end{equation}
+$$</p>
+<p>with the exact value $\alpha_e \simeq 0.002$. So we can use our usual Richardson extrapolation methods applied to $\Edt{\dt}/\dt^2$, to get a measured value for $\alpha$ with an error interval:</p>
+<p>$$
+\begin{equation}
+  \alpha_m  = \frac{8\Edt{\dt} - \Edt{2\dt} \pm \left| \Edt{\dt} - \Edt{2\dt} \right|}{4\dt^2}.
+\end{equation}
+$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lte_values</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">Edt</span> <span class="o">=</span> <span class="n">lte_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">E2dt</span> <span class="o">=</span> <span class="n">lte_values</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">dt</span> <span class="o">=</span> <span class="n">T_values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">err1</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">Edt</span> <span class="o">-</span> <span class="n">E2dt</span><span class="p">)</span>
+    <span class="n">a_lo</span> <span class="o">=</span> <span class="p">(</span><span class="mf">8.0</span><span class="o">*</span><span class="n">Edt</span> <span class="o">-</span> <span class="n">E2dt</span> <span class="o">-</span> <span class="n">err1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">4.0</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">a_hi</span> <span class="o">=</span> <span class="p">(</span><span class="mf">8.0</span><span class="o">*</span><span class="n">Edt</span> <span class="o">-</span> <span class="n">E2dt</span> <span class="o">+</span> <span class="n">err1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">4.0</span><span class="o">*</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Base dt={:.4g}: the measured alpha is in [{:.5g}, {:.5g}]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">dt</span><span class="p">,</span> <span class="n">a_lo</span><span class="p">,</span> <span class="n">a_hi</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Does this contain the exact value? {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">a_lo</span> <span class="o">&lt;=</span> <span class="n">lte_exact</span> <span class="o">&lt;=</span> <span class="n">a_hi</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Base dt=0.001: the measured alpha is in [0.00047112, 0.0034992]
+Does this contain the exact value? True
+Base dt=0.002: the measured alpha is in [0.00044604, 0.0035244]
+Does this contain the exact value? True
+Base dt=0.004: the measured alpha is in [0.00039575, 0.0035747]
+Does this contain the exact value? True
+Base dt=0.008: the measured alpha is in [0.00029522, 0.0036752]
+Does this contain the exact value? True
+Base dt=0.016: the measured alpha is in [9.4165e-05, 0.0038763]
+Does this contain the exact value? True
+Base dt=0.032: the measured alpha is in [-0.00030782, 0.0042784]
+Does this contain the exact value? True
+Base dt=0.064: the measured alpha is in [-0.0011113, 0.0050826]
+Does this contain the exact value? True
+Base dt=0.128: the measured alpha is in [-0.0027153, 0.0066903]
+Does this contain the exact value? True
+Base dt=0.256: the measured alpha is in [-0.0059063, 0.0099024]
+Does this contain the exact value? True
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So, to the limits that we can measure the local truncation error, we have implemented Euler&#39;s method.</p>
+</div>
+</div>
+</div></p>
+<hr />
+<p>You can <a href="http://IanHawke.github.io/blog/notebooks/03-Close-Enough-Just-Euler.ipynb">download this notebook</a>.</p>
+            </div>
+            <!-- /.entry-content -->
+        </article>
+    </section>
+
+        </div>
+        <div class="col-sm-3" id="sidebar">
+            <aside>
+<div id="aboutme">
+    <p>
+        <strong>About Ian Hawke</strong><br/>
+        Ian Hawke, numerical relativist, Southampton
+    </p>
+</div>
+<section class="well well-sm">
+    <ul class="list-group list-group-flush">
+            <li class="list-group-item"><h4><i class="fa fa-home fa-lg"></i><span class="icon-label">Social</span></h4>
+              <ul class="list-group" id="social">
+                <li class="list-group-item"><a href="http://twitter.com/IanHawke"><i class="fa fa-twitter-square fa-lg"></i> twitter</a></li>
+                <li class="list-group-item"><a href="http://github.com/IanHawke"><i class="fa fa-github-square fa-lg"></i> github</a></li>
+              </ul>
+            </li>
+
+
+
+            <li class="list-group-item"><a href="http://IanHawke.github.io/blog/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
+                <ul class="list-group " id="tags">
+                    <li class="list-group-item tag-1">
+                        <a href="http://IanHawke.github.io/blog/tag/python.html">
+                            Python
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+    <li class="list-group-item"><h4><i class="fa fa-github fa-lg"></i><span class="icon-label">GitHub Repos</span></h4>
+        <div id="gh_repos">
+            <p class="list-group-item">Status updating...</p>
+        </div>
+    </li>
+    </ul>
+</section>
+            </aside>
+        </div>
+    </div>
+</div>
+<footer>
+   <div class="container">
+      <hr>
+      <div class="row">
+         <div class="col-xs-10">&copy; 2015 Ian Hawke
+            &middot; Powered by <a href="https://github.com/DandyDev/pelican-bootstrap3" target="_blank">pelican-bootstrap3</a>,
+            <a href="http://docs.getpelican.com/" target="_blank">Pelican</a>,
+            <a href="http://getbootstrap.com" target="_blank">Bootstrap</a>              <p><small>  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="//i.creativecommons.org/l/by/4.0/80x15.png" /></a>
+    Content
+  licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, except where indicated otherwise.
+</small></p>
+         </div>
+         <div class="col-xs-2"><p class="pull-right"><i class="fa fa-arrow-up"></i> <a href="#">Back to top</a></p></div>
+      </div>
+   </div>
+</footer>
+<script src="http://IanHawke.github.io/blog/theme/js/jquery.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="http://IanHawke.github.io/blog/theme/js/bootstrap.min.js"></script>
+
+<!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
+<script src="http://IanHawke.github.io/blog/theme/js/respond.min.js"></script>
+
+    <!-- GitHub JS -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if (!window.jXHR) {
+                var jxhr = document.createElement('script');
+                jxhr.type = 'text/javascript';
+                jxhr.src = 'http://IanHawke.github.io/blog/theme/js/jXHR.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(jxhr, s);
+            }
+
+            github.showRepos({
+                user: 'IanHawke',
+                count: 5,
+                skip_forks: false,
+                target: '#gh_repos'
+            });
+        });
+    </script>
+    <script src="http://IanHawke.github.io/blog/theme/js/github.js" type="text/javascript"></script>
+    <!-- End GitHub JS Code -->
+
+</body>
+</html>
