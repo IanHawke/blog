@@ -1,7 +1,7 @@
 Title: Close Enough Part 3
 Series: Close_Enough
 series_index: 4
-Date: 2015-03-28
+Date: 2015-04-15 09:30
 Category: Modelling
 Tags: Python, IPython notebook, Testing Scientific Code
 Author: Ian Hawke
