@@ -1,7 +1,9 @@
 Title: Close Enough Part 1
+Series: Close_Enough
+series_index: 2
 Date: 2015-03-26
-Category: Testing
-Tags: Python
+Category: Modelling
+Tags: Python, IPython notebook, Testing Scientific Code
 Author: Ian Hawke
 Summary: The first in the series on testing scientific software, this looks at the (very weak) constraints from convergence testing.
 

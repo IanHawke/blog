@@ -1,7 +1,9 @@
 Title: Close Enough
+Series: Close_Enough
+series_index: 1
 Date: 2015-03-17
-Category: Testing
-Tags: Python
+Category: Modelling
+Tags: Python, IPython notebook, Testing Scientific Code
 Author: Ian Hawke
 Summary: This starts a series of posts discussing how to test scientific software.
 

@@ -1,7 +1,9 @@
 Title: Close Enough Part 2
+Series: Close_Enough
+series_index: 3
 Date: 2015-03-27
-Category: Testing
-Tags: Python
+Category: Modelling
+Tags: Python, IPython notebook, Testing Scientific Code
 Author: Ian Hawke
 Summary: The second in the series on testing, this shows tighter constraints on the behaviour of the algorithm, but at a cost: one number is not enough.
 
