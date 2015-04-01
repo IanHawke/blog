@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ian Hawke</title><link href="http://IanHawke.github.io/blog/" rel="alternate"></link><link href="http://IanHawke.github.io/blog/feeds/testing.atom.xml" rel="self"></link><id>http://IanHawke.github.io/blog/</id><updated>2015-03-29T00:00:00+00:00</updated><entry><title>Close Enough Part 4</title><link href="http://IanHawke.github.io/blog/close-enough-part-4.html" rel="alternate"></link><updated>2015-03-29T00:00:00+00:00</updated><author><name>Ian Hawke</name></author><id>tag:IanHawke.github.io,2015-03-29:blog/close-enough-part-4.html</id><summary type="html">&lt;!-- the next line is the key to include the notebook here: --&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ian Hawke</title><link href="http://IanHawke.github.io/blog/" rel="alternate"></link><link href="http://IanHawke.github.io/blog/feeds/modelling.atom.xml" rel="self"></link><id>http://IanHawke.github.io/blog/</id><updated>2015-03-29T00:00:00+00:00</updated><entry><title>Close Enough Part 4</title><link href="http://IanHawke.github.io/blog/close-enough-part-4.html" rel="alternate"></link><updated>2015-03-29T00:00:00+00:00</updated><author><name>Ian Hawke</name></author><id>tag:IanHawke.github.io,2015-03-29:blog/close-enough-part-4.html</id><summary type="html">&lt;!-- the next line is the key to include the notebook here: --&gt;
 
 &lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -1377,7 +1377,7 @@ Algorithm G, in units of m^3 kg^-1 s^-2: 6.67253235347e-11
 &lt;/div&gt;
 &lt;/div&gt;&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;You can &lt;a href="http://IanHawke.github.io/blog/notebooks/04-n-body-test.ipynb"&gt;download this notebook&lt;/a&gt;.&lt;/p&gt;</summary><category term="Python"></category></entry><entry><title>Close Enough Part 3</title><link href="http://IanHawke.github.io/blog/close-enough-part-3.html" rel="alternate"></link><updated>2015-03-28T00:00:00+00:00</updated><author><name>Ian Hawke</name></author><id>tag:IanHawke.github.io,2015-03-28:blog/close-enough-part-3.html</id><summary type="html">&lt;!-- the next line is the key to include the notebook here: --&gt;
+&lt;p&gt;You can &lt;a href="http://IanHawke.github.io/blog/notebooks/04-n-body-test.ipynb"&gt;download this notebook&lt;/a&gt;.&lt;/p&gt;</summary><category term="Python"></category><category term="IPython notebook"></category><category term="Testing Scientific Code"></category></entry><entry><title>Close Enough Part 3</title><link href="http://IanHawke.github.io/blog/close-enough-part-3.html" rel="alternate"></link><updated>2015-03-28T00:00:00+00:00</updated><author><name>Ian Hawke</name></author><id>tag:IanHawke.github.io,2015-03-28:blog/close-enough-part-3.html</id><summary type="html">&lt;!-- the next line is the key to include the notebook here: --&gt;
 
 &lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -1927,7 +1927,7 @@ Does this contain the exact value? True
 &lt;/div&gt;
 &lt;/div&gt;&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;You can &lt;a href="http://IanHawke.github.io/blog/notebooks/03-Close-Enough-Just-Euler.ipynb"&gt;download this notebook&lt;/a&gt;.&lt;/p&gt;</summary><category term="Python"></category></entry><entry><title>Close Enough Part 2</title><link href="http://IanHawke.github.io/blog/close-enough-part-2.html" rel="alternate"></link><updated>2015-03-27T00:00:00+00:00</updated><author><name>Ian Hawke</name></author><id>tag:IanHawke.github.io,2015-03-27:blog/close-enough-part-2.html</id><summary type="html">&lt;!-- the next line is the key to include the notebook here: --&gt;
+&lt;p&gt;You can &lt;a href="http://IanHawke.github.io/blog/notebooks/03-Close-Enough-Just-Euler.ipynb"&gt;download this notebook&lt;/a&gt;.&lt;/p&gt;</summary><category term="Python"></category><category term="IPython notebook"></category><category term="Testing Scientific Code"></category></entry><entry><title>Close Enough Part 2</title><link href="http://IanHawke.github.io/blog/close-enough-part-2.html" rel="alternate"></link><updated>2015-03-27T00:00:00+00:00</updated><author><name>Ian Hawke</name></author><id>tag:IanHawke.github.io,2015-03-27:blog/close-enough-part-2.html</id><summary type="html">&lt;!-- the next line is the key to include the notebook here: --&gt;
 
 &lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -2566,7 +2566,7 @@ gg==
 &lt;/div&gt;
 &lt;/div&gt;&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;You can &lt;a href="http://IanHawke.github.io/blog/notebooks/02-Close-Enough-Slopes.ipynb"&gt;download this notebook&lt;/a&gt;.&lt;/p&gt;</summary><category term="Python"></category></entry><entry><title>Close Enough Part 1</title><link href="http://IanHawke.github.io/blog/close-enough-part-1.html" rel="alternate"></link><updated>2015-03-26T00:00:00+00:00</updated><author><name>Ian Hawke</name></author><id>tag:IanHawke.github.io,2015-03-26:blog/close-enough-part-1.html</id><summary type="html">&lt;!-- the next line is the key to include the notebook here: --&gt;
+&lt;p&gt;You can &lt;a href="http://IanHawke.github.io/blog/notebooks/02-Close-Enough-Slopes.ipynb"&gt;download this notebook&lt;/a&gt;.&lt;/p&gt;</summary><category term="Python"></category><category term="IPython notebook"></category><category term="Testing Scientific Code"></category></entry><entry><title>Close Enough Part 1</title><link href="http://IanHawke.github.io/blog/close-enough-part-1.html" rel="alternate"></link><updated>2015-03-26T00:00:00+00:00</updated><author><name>Ian Hawke</name></author><id>tag:IanHawke.github.io,2015-03-26:blog/close-enough-part-1.html</id><summary type="html">&lt;!-- the next line is the key to include the notebook here: --&gt;
 
 &lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -3921,7 +3921,7 @@ TkSuQmCC
 &lt;/div&gt;
 &lt;/div&gt;&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;You can &lt;a href="http://IanHawke.github.io/blog/notebooks/01-Close-Enough-Errorbars.ipynb"&gt;download this notebook&lt;/a&gt;.&lt;/p&gt;</summary><category term="Python"></category></entry><entry><title>Close Enough</title><link href="http://IanHawke.github.io/blog/close-enough.html" rel="alternate"></link><updated>2015-03-17T00:00:00+00:00</updated><author><name>Ian Hawke</name></author><id>tag:IanHawke.github.io,2015-03-17:blog/close-enough.html</id><summary type="html">&lt;!-- the next line is the key to include the notebook here: --&gt;
+&lt;p&gt;You can &lt;a href="http://IanHawke.github.io/blog/notebooks/01-Close-Enough-Errorbars.ipynb"&gt;download this notebook&lt;/a&gt;.&lt;/p&gt;</summary><category term="Python"></category><category term="IPython notebook"></category><category term="Testing Scientific Code"></category></entry><entry><title>Close Enough</title><link href="http://IanHawke.github.io/blog/close-enough.html" rel="alternate"></link><updated>2015-03-17T00:00:00+00:00</updated><author><name>Ian Hawke</name></author><id>tag:IanHawke.github.io,2015-03-17:blog/close-enough.html</id><summary type="html">&lt;!-- the next line is the key to include the notebook here: --&gt;
 
 &lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
@@ -4023,4 +4023,4 @@ $$&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/p&gt;
 &lt;hr /&gt;
-&lt;p&gt;You can &lt;a href="http://IanHawke.github.io/blog/notebooks/00-Close-Enough-Post-Overall.ipynb"&gt;download this notebook&lt;/a&gt;.&lt;/p&gt;</summary><category term="Python"></category></entry></feed>
+&lt;p&gt;You can &lt;a href="http://IanHawke.github.io/blog/notebooks/00-Close-Enough-Post-Overall.ipynb"&gt;download this notebook&lt;/a&gt;.&lt;/p&gt;</summary><category term="Python"></category><category term="IPython notebook"></category><category term="Testing Scientific Code"></category></entry></feed>
