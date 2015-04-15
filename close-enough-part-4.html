@@ -397,6 +397,7 @@ Ian Hawke            </a>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, there&#39;s a number of issues with this code, as noted in <a href="http://software-carpentry.org/blog/2014/10/why-we-dont-teach-testing.html">comments on the original post</a>. Instead of addressing those here, I&#39;ll point to Konrad Hinsen&#39;s upcoming article on testing (to appear in CiSE in July), or <a href="http://physics.codes/">Scopatz and Huff&#39;s book</a>, both of which discuss n-body codes, testing, and how to code them effectively. Also, we&#39;re only interested in testing whether the implementation is &quot;correct&quot;, not the limitations of that implementation for modelling the physics: Konrad Hinsen points me to <a href="http://www.comp-astrophys-cosmol.com/content/2/1/2/abstract">this paper by Boekholt and Portegies Zwart</a> on testing n-body code for their <em>reliability</em>.</p>
 <p>In previous notebooks we compared the results of the algorithm with the expected behaviour within the context of a <em>model</em>. The model only considered the behaviour of the numerical algorithm: we took it for granted that the correct physics had been implemented. In this case, the <code>advance</code> function is doing two things, neither of which are immediately obvious:</p>
 <ol>
 <li>it evaluates the forces due to gravitational interaction between all of the particles, and</li>
@@ -841,7 +842,7 @@ Norm of differences is 0.0 (flipped coordinate 2).
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-Norm of differences is 4.90930447899e-15.
+Norm of differences is 2.65582528796e-15.
 
 </pre>
 </div>
@@ -881,7 +882,7 @@ Norm of differences is 4.90930447899e-15.
 
 <div class="output_text output_subarea output_pyout">
 <pre>
-8.8817841970012523e-15
+5.0653925498522767e-15
 </pre>
 </div>
 
@@ -920,16 +921,16 @@ Norm of differences is 4.90930447899e-15.
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-[[ -6.62471615e-17  -1.58129974e-16  -2.14544258e-16]
- [  1.77635684e-15   0.00000000e+00  -1.11022302e-16]
- [  0.00000000e+00   0.00000000e+00  -1.38777878e-16]
- [  0.00000000e+00   0.00000000e+00   3.33066907e-16]
- [  1.77635684e-15   0.00000000e+00  -3.33066907e-16]]
-[[  0.00000000e+00   0.00000000e+00   6.88214270e-22]
- [  0.00000000e+00   0.00000000e+00  -1.73472348e-18]
+[[  3.14177755e-18   2.85959236e-16   7.50034688e-18]
+ [  0.00000000e+00   0.00000000e+00  -1.11022302e-16]
+ [  0.00000000e+00   4.44089210e-16  -2.77555756e-17]
  [  0.00000000e+00   0.00000000e+00   0.00000000e+00]
- [  0.00000000e+00   0.00000000e+00   0.00000000e+00]
- [  0.00000000e+00   0.00000000e+00   0.00000000e+00]]
+ [  0.00000000e+00   1.77635684e-15   0.00000000e+00]]
+[[ 0.  0.  0.]
+ [ 0.  0.  0.]
+ [ 0.  0.  0.]
+ [ 0.  0.  0.]
+ [ 0.  0.  0.]]
 
 </pre>
 </div>
@@ -1030,7 +1031,7 @@ Norm of differences is 4.90930447899e-15.
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-Norm of differences is 2.47683827851e-14.
+Norm of differences is 2.93168523701e-15.
 
 </pre>
 </div>
@@ -1070,7 +1071,7 @@ Norm of differences is 2.47683827851e-14.
 
 <div class="output_text output_subarea output_pyout">
 <pre>
-2.6229018956769323e-14
+1.1709383462843448e-14
 </pre>
 </div>
 
@@ -1449,15 +1450,15 @@ $$</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
 We expect the third-to-last (separation^{-2}) coefficient to dominate:
-Coefficients from separation: [ -2.74380513e-13   8.12379888e-13   3.94784176e-02   4.24900861e-13
-  -7.51055797e-14]
+Coefficients from separation: [ -1.23658983e-13   3.37053840e-13   3.94784176e-02   1.52064406e-13
+  -2.51860848e-14]
 Coefficient of separation^{-2}: 0.039478
-Largest other coefficient: 8.1238e-13
+Largest other coefficient: 3.3705e-13
 We expect the second-to-last (mass^{1}) coefficient to dominate:
-Coefficients from mass: [ -2.08084678e-12   3.11409051e-13  -1.59477396e-14   9.86960440e-02
-  -2.61829774e-18]
+Coefficients from mass: [ -1.49647348e-10   3.70891390e-11  -3.28036188e-12   9.86960440e-02
+  -1.64884876e-15]
 Coefficient of mass^{1}: 0.098696
-Largest other coefficient: 2.0808e-12
+Largest other coefficient: 1.4965e-10
 
 </pre>
 </div>
@@ -1607,7 +1608,7 @@ Algorithm G, in units of m^3 kg^-1 s^-2: 6.67253235347e-11
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>So the constants agree to four significant figures; without more in-depth knowledge of the original implementation, this might just reflect experimental uncertainties in the knowledge of $G$ at the time. Given the <a href="http://en.wikipedia.org/wiki/Gravitational_constant#Laws_and_constants">experimental uncertainty</a> in the value of the gravitational constant, I would say this check is close enough.</p>
+<p>So the constants agree to three significant figures. Noting that the conversion factors used are only given to five or six significant figures, and the <a href="http://en.wikipedia.org/wiki/Gravitational_constant#Laws_and_constants">experimental uncertainty</a> in the value of the gravitational constant, I would say this check is close enough.</p>
 </div>
 </div>
 </div>
@@ -1664,8 +1665,8 @@ Algorithm G, in units of m^3 kg^-1 s^-2: 6.67253235347e-11
             <li class="list-group-item"><a href="http://IanHawke.github.io/blog/"><h4><i class="fa fa-tags fa-lg"></i><span class="icon-label">Tags</span></h4></a>
                 <ul class="list-group " id="tags">
                     <li class="list-group-item tag-1">
-                        <a href="http://IanHawke.github.io/blog/tag/python.html">
-                            Python
+                        <a href="http://IanHawke.github.io/blog/tag/ipython-notebook.html">
+                            IPython notebook
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
@@ -1674,8 +1675,8 @@ Algorithm G, in units of m^3 kg^-1 s^-2: 6.67253235347e-11
                         </a>
                     </li>
                     <li class="list-group-item tag-1">
-                        <a href="http://IanHawke.github.io/blog/tag/ipython-notebook.html">
-                            IPython notebook
+                        <a href="http://IanHawke.github.io/blog/tag/python.html">
+                            Python
                         </a>
                     </li>
                 </ul>

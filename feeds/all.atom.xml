@@ -139,6 +139,7 @@
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Now, there&amp;#39;s a number of issues with this code, as noted in &lt;a href="http://software-carpentry.org/blog/2014/10/why-we-dont-teach-testing.html"&gt;comments on the original post&lt;/a&gt;. Instead of addressing those here, I&amp;#39;ll point to Konrad Hinsen&amp;#39;s upcoming article on testing (to appear in CiSE in July), or &lt;a href="http://physics.codes/"&gt;Scopatz and Huff&amp;#39;s book&lt;/a&gt;, both of which discuss n-body codes, testing, and how to code them effectively. Also, we&amp;#39;re only interested in testing whether the implementation is &amp;quot;correct&amp;quot;, not the limitations of that implementation for modelling the physics: Konrad Hinsen points me to &lt;a href="http://www.comp-astrophys-cosmol.com/content/2/1/2/abstract"&gt;this paper by Boekholt and Portegies Zwart&lt;/a&gt; on testing n-body code for their &lt;em&gt;reliability&lt;/em&gt;.&lt;/p&gt;
 &lt;p&gt;In previous notebooks we compared the results of the algorithm with the expected behaviour within the context of a &lt;em&gt;model&lt;/em&gt;. The model only considered the behaviour of the numerical algorithm: we took it for granted that the correct physics had been implemented. In this case, the &lt;code&gt;advance&lt;/code&gt; function is doing two things, neither of which are immediately obvious:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;it evaluates the forces due to gravitational interaction between all of the particles, and&lt;/li&gt;
@@ -583,7 +584,7 @@ Norm of differences is 0.0 (flipped coordinate 2).
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
-Norm of differences is 4.90930447899e-15.
+Norm of differences is 2.65582528796e-15.
 
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -623,7 +624,7 @@ Norm of differences is 4.90930447899e-15.
 
 &lt;div class="output_text output_subarea output_pyout"&gt;
 &lt;pre&gt;
-8.8817841970012523e-15
+5.0653925498522767e-15
 &lt;/pre&gt;
 &lt;/div&gt;
 
@@ -662,16 +663,16 @@ Norm of differences is 4.90930447899e-15.
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
-[[ -6.62471615e-17  -1.58129974e-16  -2.14544258e-16]
- [  1.77635684e-15   0.00000000e+00  -1.11022302e-16]
- [  0.00000000e+00   0.00000000e+00  -1.38777878e-16]
- [  0.00000000e+00   0.00000000e+00   3.33066907e-16]
- [  1.77635684e-15   0.00000000e+00  -3.33066907e-16]]
-[[  0.00000000e+00   0.00000000e+00   6.88214270e-22]
- [  0.00000000e+00   0.00000000e+00  -1.73472348e-18]
+[[  3.14177755e-18   2.85959236e-16   7.50034688e-18]
+ [  0.00000000e+00   0.00000000e+00  -1.11022302e-16]
+ [  0.00000000e+00   4.44089210e-16  -2.77555756e-17]
  [  0.00000000e+00   0.00000000e+00   0.00000000e+00]
- [  0.00000000e+00   0.00000000e+00   0.00000000e+00]
- [  0.00000000e+00   0.00000000e+00   0.00000000e+00]]
+ [  0.00000000e+00   1.77635684e-15   0.00000000e+00]]
+[[ 0.  0.  0.]
+ [ 0.  0.  0.]
+ [ 0.  0.  0.]
+ [ 0.  0.  0.]
+ [ 0.  0.  0.]]
 
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -772,7 +773,7 @@ Norm of differences is 4.90930447899e-15.
 &lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
-Norm of differences is 2.47683827851e-14.
+Norm of differences is 2.93168523701e-15.
 
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -812,7 +813,7 @@ Norm of differences is 2.47683827851e-14.
 
 &lt;div class="output_text output_subarea output_pyout"&gt;
 &lt;pre&gt;
-2.6229018956769323e-14
+1.1709383462843448e-14
 &lt;/pre&gt;
 &lt;/div&gt;
 
@@ -1191,15 +1192,15 @@ $$&lt;/p&gt;
 &lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 We expect the third-to-last (separation^{-2}) coefficient to dominate:
-Coefficients from separation: [ -2.74380513e-13   8.12379888e-13   3.94784176e-02   4.24900861e-13
-  -7.51055797e-14]
+Coefficients from separation: [ -1.23658983e-13   3.37053840e-13   3.94784176e-02   1.52064406e-13
+  -2.51860848e-14]
 Coefficient of separation^{-2}: 0.039478
-Largest other coefficient: 8.1238e-13
+Largest other coefficient: 3.3705e-13
 We expect the second-to-last (mass^{1}) coefficient to dominate:
-Coefficients from mass: [ -2.08084678e-12   3.11409051e-13  -1.59477396e-14   9.86960440e-02
-  -2.61829774e-18]
+Coefficients from mass: [ -1.49647348e-10   3.70891390e-11  -3.28036188e-12   9.86960440e-02
+  -1.64884876e-15]
 Coefficient of mass^{1}: 0.098696
-Largest other coefficient: 2.0808e-12
+Largest other coefficient: 1.4965e-10
 
 &lt;/pre&gt;
 &lt;/div&gt;
@@ -1349,7 +1350,7 @@ Algorithm G, in units of m^3 kg^-1 s^-2: 6.67253235347e-11
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;So the constants agree to four significant figures; without more in-depth knowledge of the original implementation, this might just reflect experimental uncertainties in the knowledge of $G$ at the time. Given the &lt;a href="http://en.wikipedia.org/wiki/Gravitational_constant#Laws_and_constants"&gt;experimental uncertainty&lt;/a&gt; in the value of the gravitational constant, I would say this check is close enough.&lt;/p&gt;
+&lt;p&gt;So the constants agree to three significant figures. Noting that the conversion factors used are only given to five or six significant figures, and the &lt;a href="http://en.wikipedia.org/wiki/Gravitational_constant#Laws_and_constants"&gt;experimental uncertainty&lt;/a&gt; in the value of the gravitational constant, I would say this check is close enough.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4019,6 +4020,44 @@ $$&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://ianhawke.github.io/blog/close-enough-part-2.html"&gt;&lt;em&gt;I don&amp;#39;t care about the answer: I just want the algorithm behaviour to be right&lt;/em&gt;&lt;/a&gt;: $s_m=1.014$ with $\dt=0.001$ is close enough if $1 \le s_m \le 1.0093$ with $\dt=0.0005$.&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://ianhawke.github.io/blog/close-enough-part-3.html"&gt;&lt;em&gt;I don&amp;#39;t care about the behaviour: I just want to know I&amp;#39;ve implemented Euler&amp;#39;s method&lt;/em&gt;&lt;/a&gt;: measure the local truncation error instead, and check &lt;em&gt;both&lt;/em&gt; the convergence rate &lt;em&gt;and&lt;/em&gt; the leading order constant. $s_m$ by itself is useless.&lt;/li&gt;
 &lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="And-yet-more"&gt;And yet more&lt;a class="anchor-link" href="#And-yet-more"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The accuracy of the convergence rate was just one small point in &lt;a href="http://software-carpentry.org/blog/2014/10/why-we-dont-teach-testing.html"&gt;Greg&amp;#39;s original post&lt;/a&gt;. The more substantial question was on testing a &amp;quot;real&amp;quot; code, such as &lt;a href="http://benchmarksgame.alioth.debian.org/u32/program.php?test=nbody&amp;amp;lang=python3&amp;amp;id=1"&gt;this n-body simulation code&lt;/a&gt;. To illustrate how far you can go with the approaches described above, &lt;a href="http://ianhawke.github.io/blog/close-enough-part-4.html"&gt;here&amp;#39;s my attempt at testing that code&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h6 id="Acknowledgements"&gt;Acknowledgements&lt;a class="anchor-link" href="#Acknowledgements"&gt;&amp;#182;&lt;/a&gt;&lt;/h6&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Aside from the obvious debts to Lorena Barba and Greg Wilson, both for starting this off and for later comments, I&amp;#39;ve also benefitted from comments from and discussions with Hans Fangohr and Ashwin Srinath.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;/p&gt;
