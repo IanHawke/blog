@@ -73,3 +73,5 @@ EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
 # stored
 NOTEBOOK_DIR = 'notebooks'
 
+# Disqus
+DISQUS_SITENAME = 'ianhawkeblog'
