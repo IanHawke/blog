@@ -2,7 +2,7 @@
 <html lang="en"
 >
 <head>
-    <title>Articles by Ian Hawke - Ian Hawke</title>
+    <title>How do you choose a reproducibility metric? - Ian Hawke</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -166,15 +166,21 @@ init_mathjax = function() {
 init_mathjax();
 </script>
 
+<link rel="canonical" href="http://IanHawke.github.io/blog/how-do-you-choose-a-reproducibility-metric.html">
 
         <meta name="author" content="Ian Hawke" />
+        <meta name="keywords" content="Reproducibility" />
+        <meta name="description" content="Mesnard and Barba produced a brilliant reproducibility paper, showing how hard it can be to get many details correct. In contrast to some previous reproducibility efforts they don&#39;t have a single number, or curve, that they want to reproduce in advance. Is this the best approach?" />
 
-    <!-- Open Graph tags -->
         <meta property="og:site_name" content="Ian Hawke" />
-        <meta property="og:type" content="website"/>
-        <meta property="og:title" content="Ian Hawke"/>
-        <meta property="og:url" content="http://IanHawke.github.io/blog"/>
-        <meta property="og:description" content="Ian Hawke"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:title" content="How do you choose a reproducibility metric?"/>
+        <meta property="og:url" content="http://IanHawke.github.io/blog/how-do-you-choose-a-reproducibility-metric.html"/>
+        <meta property="og:description" content="Mesnard and Barba produced a brilliant reproducibility paper, showing how hard it can be to get many details correct. In contrast to some previous reproducibility efforts they don&#39;t have a single number, or curve, that they want to reproduce in advance. Is this the best approach?"/>
+        <meta property="article:published_time" content="2016-05-19" />
+            <meta property="article:section" content="Reproducibility" />
+            <meta property="article:tag" content="Reproducibility" />
+            <meta property="article:author" content="Ian Hawke" />
 
 
     <!-- Bootstrap -->
@@ -218,88 +224,96 @@ Ian Hawke            </a>
     <div class="row">
         <div class="col-sm-9">
 
-            <article>
-                <h2><a href="http://IanHawke.github.io/blog/close-enough-part-2.html">Close Enough Part 2</a></h2>
-                    <div class="well well-sm">
+    <section id="content">
+        <article>
+            <header class="page-header">
+                <h1>
+                    <a href="http://IanHawke.github.io/blog/how-do-you-choose-a-reproducibility-metric.html"
+                       rel="bookmark"
+                       title="Permalink to How do you choose a reproducibility metric?">
+                        How do you choose a reproducibility metric?
+                    </a>
+                </h1>
+            </header>
+            <div class="entry-content">
+                <div class="panel">
+                    <div class="panel-body">
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-04-15T09:20:00+01:00"> Wed 15 April 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2016-05-19T12:00:00+01:00"> Thu 19 May 2016</time>
     </span>
 
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://IanHawke.github.io/blog/tag/python.html">Python</a>
-        /
-	<a href="http://IanHawke.github.io/blog/tag/ipython-notebook.html">IPython notebook</a>
-        /
-	<a href="http://IanHawke.github.io/blog/tag/testing-scientific-code.html">Testing Scientific Code</a>
+	<a href="http://IanHawke.github.io/blog/tag/reproducibility.html">Reproducibility</a>
     
 </footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>The second in the series on testing, this shows tighter constraints on the behaviour of the algorithm, but at a cost: one number is not enough.</p>
-                    <a class="btn btn-default btn-xs" href="http://IanHawke.github.io/blog/close-enough-part-2.html">more ...</a>
                 </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://IanHawke.github.io/blog/close-enough-part-1.html">Close Enough Part 1</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-04-15T09:10:00+01:00"> Wed 15 April 2015</time>
-    </span>
+                <p>Some papers are effortlessly brilliant. Some show their brilliance by lifting the lid on just how much work it is to do it <em>right</em>. Oliver Mesnard and Lorena Barba just <a href="http://arxiv.org/abs/1605.04339">released a preprint</a> whose title, "<em>Reproducible and replicable CFD: it's harder than you think</em>", shows it firmly belongs in the latter camp. Combine that with the <a href="https://github.com/barbagroup/snake-repro">detailed repository</a> containing all the code needed to do the work, there's enough information to lose a couple of days.</p>
+<p>What most interests me is the criteria chosen for successful reproducibility. I've argued before about what is <a href="http://ianhawke.github.io/blog/close-enough.html">close enough</a> when comparing a numerical simulation to theoretical expectations, and about <a href="http://ianhawke.github.io/blog/the-image-is-the-simulation.html">the minimum I'd like to be able to reproduce</a>. But this Mesnard and Barba's paper is far more complex, and is code versus code comparison with experimental backup, not code versus theory. The criteria discussed in the introduction include</p>
+<blockquote>
+<p>A previous experimental study had already shown that the lift coefficient of a snake cross section in a wind tunnel gets an extra oomph of lift at 35 degrees angle-of-attack. Our simulations showed the same feature in the plot of lift coefficient. Many detailed observations of the wake (visualized from the fluid-flow solution in terms of the vorticity field in space and time) allowed us to give an explanation of the mechanism providing extra lift.</p>
+</blockquote>
+<p>This is a much more complex than comparing a single number. Hence the paper contains statements such as</p>
+<blockquote>
+<p>Is it acceptable as a replication study? We think yes, but this is a judgement call.</p>
+</blockquote>
+<p>and</p>
+<blockquote>
+<p>we make a judgement call that this result does indeed pass muster as a replication of our previous study.</p>
+</blockquote>
+<p>How is this judgement call made? Is this art or science? What needs to be reproduced, and how closely?</p>
+<h2>Samurai and Ninja</h2>
+<p>To think further about this, let's look at a totally different study: binary black holes. Long before the <a href="http://www.ligo.org/science/Publication-GW150914/index.php">GW150914 observation</a> there was a lot of concern about the accuracy of numerical simulations of black holes. After a lot of effort, gravitational wave signals were finally being computed from numerical simulations. With no experiment to compare against, and with significant differences in both the form of the equations and the numerical methods used, the possibility that some, if not all, of the simulations were simply wrong was a big worry.</p>
+<p>The <a href="http://journals.aps.org/prd/abstract/10.1103/PhysRevD.79.084025">Samurai</a> (<a href="http://arxiv.org/abs/0901.2437">arXiv link</a>) and <a href="http://iopscience.iop.org/article/10.1088/0264-9381/26/16/165008/meta">Ninja</a> (<a href="http://arxiv.org/abs/0901.4399">arXiv link</a>) were the result. In both cases the key question was "Does it make any difference to a <em>detection</em> if we use one numerical result rather than another?". There was a clear metric, given by the "best mismatch" between predicted waveforms, after folding in the expected noise from the experiment. In the Ninja paper waveforms predicted by different codes were directly compared; in the Samurai paper the link to the full data analysis pipelines are made, to see what useful information can be pulled out.</p>
+<p>The result was simple: for current detectors, <em>all</em> the numerical results were effectively indistinguishable. The difficulty of doing the experiment at all constrained the results so that only the grossest, most qualitative features of the simulations stood out from the noise. This reproducibility metric worked, but hid many of the interesting differences between the simulations. However, without any experiment that could show the differences, is there a point in going further?</p>
+<h2>Questioning the metric</h2>
+<p>In the Mesnard and Barba case, they have broadly specified two "metrics":</p>
+<ol>
+<li>the variation of the lift coefficient with angle-of-attack;</li>
+<li>features in the wake explaining the lift mechanism.</li>
+</ol>
+<p>The simplest numerical metric is the variation of the lift coefficient, and figures 3, 6, and 8 of their paper show how the time averaged lift coefficients compare across simulations and experiment. What is more interesting to me is the way that Mesnard and Barba challenge this metric, by looking at the variation of the instantaneous lift coefficients (figures 4, 7, 9, and 11), discussing the impact of some of the arbitrary choices (such as the time period over which the averaging is done), and the simulation issues that could cause this. This links to the second metric: by exploring the wake features they can explain issues with the simulations, including meshing and boundary condition problems. These are clear from some of the figures, but difficult to quantify.</p>
+<p>This shows a clear difference from the Samurai and Ninja papers. The first metric is there to reproduce the experimental result. If the theory is certain and the mechanism clear, there's nothing more to say. But for the Mesnard and Barba reproduction, they wish in addition to test the <em>explanation</em> of the results. This means digging deeper into the details of the simulation results, which in turn shows differences in the lift coefficients. Their reproduction is going beyond the numerical matching of an experimental result and into the physical prediction that a detailed numerical simulation can give.</p>
+<h2>Lessons</h2>
+<p>Mesnard and Barba detail their lessons learned, but to me this paper brings home yet another point. Reproducibility has a number of technical aspects which can be extremely hard, as beautifully illustrated by this paper. However, it also has the human, non-technical aspect of choosing <em>what</em> needs to be reproduced: what is the metric? Finally, there's the issue of how that metric will change over time, as the depth of the reproduction goes from the general features that an experiment will catch to the qualitative details that "explain" why something happens.</p>
+            </div>
+            <!-- /.entry-content -->
+    <hr/>
+    <section class="comments" id="comments">
+        <h2>Comments</h2>
 
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'ianhawkeblog'; // required: replace example with your forum shortname
 
+                    var disqus_identifier = 'how-do-you-choose-a-reproducibility-metric';
+                var disqus_url = 'http://IanHawke.github.io/blog/how-do-you-choose-a-reproducibility-metric.html';
 
-<span class="label label-default">Tags</span>
-	<a href="http://IanHawke.github.io/blog/tag/python.html">Python</a>
-        /
-	<a href="http://IanHawke.github.io/blog/tag/ipython-notebook.html">IPython notebook</a>
-        /
-	<a href="http://IanHawke.github.io/blog/tag/testing-scientific-code.html">Testing Scientific Code</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>The first in the series on testing scientific software, this looks at the (very weak) constraints from convergence testing.</p>
-                    <a class="btn btn-default btn-xs" href="http://IanHawke.github.io/blog/close-enough-part-1.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-            <article>
-                <h2><a href="http://IanHawke.github.io/blog/close-enough.html">Close Enough</a></h2>
-                    <div class="well well-sm">
-<footer class="post-info">
-    <span class="label label-default">Date</span>
-    <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-04-15T09:00:00+01:00"> Wed 15 April 2015</time>
-    </span>
+            var disqus_config = function () {
+                this.language = "en";
+            };
 
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function () {
+                var dsq = document.createElement('script');
+                dsq.type = 'text/javascript';
+                dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by
+            Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
+    </section>
+        </article>
+    </section>
 
-<span class="label label-default">Tags</span>
-	<a href="http://IanHawke.github.io/blog/tag/python.html">Python</a>
-        /
-	<a href="http://IanHawke.github.io/blog/tag/ipython-notebook.html">IPython notebook</a>
-        /
-	<a href="http://IanHawke.github.io/blog/tag/testing-scientific-code.html">Testing Scientific Code</a>
-    
-</footer><!-- /.post-info -->                    </div>
-                <div class="summary"><p>This starts a series of posts discussing how to test scientific software.</p>
-                    <a class="btn btn-default btn-xs" href="http://IanHawke.github.io/blog/close-enough.html">more ...</a>
-                </div>
-            </article>
-            <hr/>
-
-        <ul class="pagination">
-                <li class="prev"><a href="http://IanHawke.github.io/blog/author/ian-hawke.html">&laquo;</a>
-                </li>
-                    <li class=""><a
-                            href="http://IanHawke.github.io/blog/author/ian-hawke.html">1</a></li>
-                    <li class="active"><a
-                            href="http://IanHawke.github.io/blog/author/ian-hawke2.html">2</a></li>
-                <li class="next disabled"><a href="#">&raquo;</a></li>
-        </ul>
         </div>
         <div class="col-sm-3" id="sidebar">
             <aside>
