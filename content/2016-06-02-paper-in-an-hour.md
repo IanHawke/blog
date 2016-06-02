@@ -5,7 +5,7 @@ Tags: Papers
 Authors: 'Alice Harpole', 'Ian Hawke'
 Summary: The Journal of Open Source Software promises that you can write a paper for them in under an hour. We put it to the test.
 
-New journals appear all the time, and few are worth paying attention to. When the [Journal of Open Source Software](http://joss.theoj.org/) ([JOSS](https://twitter.com/JOSS_TheOJ)) launched in mid-May, a few things made it stand out.
+New journals appear all the time, and few are worth paying attention to. When the [Journal of Open Source Software](http://joss.theoj.org/) ([JOSS](https://twitter.com/JOSS_TheOJ)) launched in early May, a few things made it stand out.
 
 First, it's specifically for scientific *code*, an area that's been problematic for many journals for a long time. Second, it's an [overlay journal](http://www.nature.com/news/open-journals-that-piggyback-on-arxiv-gather-momentum-1.19102), in this case piggybacking on [GitHub](https://github.com/), which is a (fairly) new and interesting development for open scientific publishing. And finally, it [suggests that](http://joss.theoj.org/about#author_guidelines)
 
