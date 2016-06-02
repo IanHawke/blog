@@ -2,7 +2,7 @@ Title: How to write an academic paper in under an hour
 Date: 2016-06-02 12:00
 Category: Papers
 Tags: Papers
-Authors: Alice Harpole, Ian Hawke
+Authors: 'Alice Harpole', 'Ian Hawke'
 Summary: The Journal of Open Source Software promises that you can write a paper for them in under an hour. We put it to the test.
 
 New journals appear all the time, and few are worth paying attention to. When the [Journal of Open Source Software](http://joss.theoj.org/) ([JOSS](https://twitter.com/JOSS_TheOJ)) launched in mid-May, a few things made it stand out.
@@ -15,7 +15,7 @@ There's a challenge to be tried.
 
 ## The paper
 
-So, less than a week after the journal launched, we decided to give it a try. Now that [our paper](http://joss.theoj.org/papers/10.21105/joss.00016) has [been accepted](https://github.com/openjournals/joss-reviews/issues/16) we can confirm that the total time writing the paper was under an hour: roughly half an hour for the original paper, and twenty minutes for the revision.
+So, less than a week after the journal launched, we (Alice Harpole and Ian Hawke) decided to give it a try. Now that [our paper](http://joss.theoj.org/papers/10.21105/joss.00016) has [been accepted](https://github.com/openjournals/joss-reviews/issues/16) we can confirm that the total time writing the paper was under an hour: roughly half an hour for the original paper, and twenty minutes for the revision.
 
 What's the trick? Well, it's like running a marathon in under three hours: once you've run the first 26 miles in under two, doing the final 385 yards in under an hour isn't a problem.
 
