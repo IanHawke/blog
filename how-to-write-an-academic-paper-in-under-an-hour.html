@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" prefix="og: http://ogp.me/ns# fb: https://www.facebook.com/2008/fbml">
 <head>
-    <title>Close Enough - Ian Hawke</title>
+    <title>How to write an academic paper in under an hour - Ian Hawke</title>
     <!-- Using the latest rendering mode for IE -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
@@ -165,23 +165,21 @@ init_mathjax = function() {
 init_mathjax();
 </script>
 
-<link rel="canonical" href="http://IanHawke.github.io/blog/close-enough.html">
+<link rel="canonical" href="http://IanHawke.github.io/blog/how-to-write-an-academic-paper-in-under-an-hour.html">
 
-        <meta name="author" content="Ian Hawke" />
-        <meta name="keywords" content="Python,IPython notebook,Testing Scientific Code" />
-        <meta name="description" content="This starts a series of posts discussing how to test scientific software." />
+        <meta name="author" content="'Alice Harpole'" />
+        <meta name="keywords" content="Papers" />
+        <meta name="description" content="The Journal of Open Source Software promises that you can write a paper for them in under an hour. We put it to the test." />
 
         <meta property="og:site_name" content="Ian Hawke" />
         <meta property="og:type" content="article"/>
-        <meta property="og:title" content="Close Enough"/>
-        <meta property="og:url" content="http://IanHawke.github.io/blog/close-enough.html"/>
-        <meta property="og:description" content="This starts a series of posts discussing how to test scientific software."/>
-        <meta property="article:published_time" content="2015-04-15" />
-            <meta property="article:section" content="Modelling" />
-            <meta property="article:tag" content="Python" />
-            <meta property="article:tag" content="IPython notebook" />
-            <meta property="article:tag" content="Testing Scientific Code" />
-            <meta property="article:author" content="Ian Hawke" />
+        <meta property="og:title" content="How to write an academic paper in under an hour"/>
+        <meta property="og:url" content="http://IanHawke.github.io/blog/how-to-write-an-academic-paper-in-under-an-hour.html"/>
+        <meta property="og:description" content="The Journal of Open Source Software promises that you can write a paper for them in under an hour. We put it to the test."/>
+        <meta property="article:published_time" content="2016-06-02" />
+            <meta property="article:section" content="Papers" />
+            <meta property="article:tag" content="Papers" />
+            <meta property="article:author" content="'Alice Harpole'" />
 
 
     <!-- Bootstrap -->
@@ -196,8 +194,8 @@ init_mathjax();
 
 
 
-        <link href="http://IanHawke.github.io/blog/feeds/modelling.atom.xml" type="application/atom+xml" rel="alternate"
-              title="Ian Hawke Modelling ATOM Feed"/>
+        <link href="http://IanHawke.github.io/blog/feeds/papers.atom.xml" type="application/atom+xml" rel="alternate"
+              title="Ian Hawke Papers ATOM Feed"/>
 
 </head>
 <body>
@@ -233,10 +231,10 @@ Ian Hawke            </a>
         <article>
             <header class="page-header">
                 <h1>
-                    <a href="http://IanHawke.github.io/blog/close-enough.html"
+                    <a href="http://IanHawke.github.io/blog/how-to-write-an-academic-paper-in-under-an-hour.html"
                        rel="bookmark"
-                       title="Permalink to Close Enough">
-                        Close Enough
+                       title="Permalink to How to write an academic paper in under an hour">
+                        How to write an academic paper in under an hour
                     </a>
                 </h1>
             </header>
@@ -246,7 +244,7 @@ Ian Hawke            </a>
 <footer class="post-info">
     <span class="label label-default">Date</span>
     <span class="published">
-        <i class="fa fa-calendar"></i><time datetime="2015-04-15T09:00:00+01:00"> Wed 15 April 2015</time>
+        <i class="fa fa-calendar"></i><time datetime="2016-06-02T12:00:00+01:00"> Thu 02 June 2016</time>
     </span>
 
 
@@ -254,167 +252,61 @@ Ian Hawke            </a>
 
 
 <span class="label label-default">Tags</span>
-	<a href="http://IanHawke.github.io/blog/tag/python.html">Python</a>
-        /
-	<a href="http://IanHawke.github.io/blog/tag/ipython-notebook.html">IPython notebook</a>
-        /
-	<a href="http://IanHawke.github.io/blog/tag/testing-scientific-code.html">Testing Scientific Code</a>
+	<a href="http://IanHawke.github.io/blog/tag/papers.html">Papers</a>
     
 </footer><!-- /.post-info -->                    </div>
                 </div>
-                <!-- the next line is the key to include the notebook here: -->
-
-<p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Back in October, Greg Wilson <a href="http://software-carpentry.org/blog/2014/10/why-we-dont-teach-testing.html">blogged about testing scientific software</a>. He specifically points to <a href="http://nbviewer.ipython.org/github/numerical-mooc/numerical-mooc/blob/master/lessons/01_phugoid/01_03_PhugoidFullModel.ipynb">a lesson introducing the Euler method</a> as part of the <a href="http://openedx.seas.gwu.edu/courses/GW/MAE6286/2014_fall/about">Practical Numerical Methods with Python MOOC</a>, and asks why a certain number (the measured convergence rate) is <em>close enough</em> to the expected value.</p>
-<p>The big question of testing in scientific software, how this should be done, and how it is being done, has led to the <a href="https://github.com/swcarpentry/close-enough-for-scientific-work"><em>Close Enough for Scientific Work</em></a> project, as launched and explained by Greg Wilson in <a href="http://software-carpentry.org/blog/2014/11/close-enough-for-scientific-work.html">this blog post</a>. If you&#39;re reading this, you should be following that project! As I&#39;ve helped out on the MOOC, which is led by <a href="http://lorenabarba.com/">Lorena Barba</a>, I&#39;ve been (over)thinking what sort of answer we could, or should, give. Well aware that we&#39;re heading for the <a href="https://www2.bc.edu/~radinr/Management_Humor/jokes.htm">academic version of the balloon joke</a> (an answer that is correct, of little use, and took a long time to arrive), I&#39;ve outlined some answers in the posts linked below.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Background">Background<a class="anchor-link" href="#Background">&#182;</a></h2>
-</div>
-</div>
-</div>
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>$$
-\newcommand{\dt}{\Delta t}
-\newcommand{\udt}[1]{u^{({#1})}(T)}
-$$</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We have a system of differential equations to solve: the solution will be $u(t)$. The numerical solution we get will depend on one parameter, the timestep $\dt$. The resulting numerical approximation, at the point $t=T$, will be $\udt{\dt}$: the exact solution is $u(T)$. </p>
-<p>The method used is Euler&#39;s method, also <a href="http://nbviewer.ipython.org/github/numerical-mooc/numerical-mooc/blob/master/lessons/01_phugoid/01_02_Phugoid_Oscillation.ipynb">introduced in an earlier lesson in the MOOC</a>, and <a href="https://www.youtube.com/watch?v=6i6qhqDCViA">explained in detail by Lorena in this screencast</a>. The key result derived there is that Euler&#39;s method is <em>first order</em>, so that</p>
-<p>$$
-\begin{equation}
-  u(T) - \udt{\dt} = c_1 \dt + c_2 \dt^2 + {\cal O}(\dt^3) \simeq c_1 \dt.
-\end{equation}
-$$</p>
-<p>For sufficiently small $\dt$ the error is proportional to $\dt$.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As we can&#39;t (usually) know the exact solution $u(T)$ ahead of time, a standard check is <em>grid convergence</em>: compute three solutions with different timesteps (eg, $\dt, 2\dt, 4\dt$) and compare them. The comparison to use is</p>
-<p>$$
-\begin{equation}
-  s_m = \log_2 \left( \frac{\udt{4\dt} - \udt{2\dt}}{\udt{2\dt} - \udt{\dt}} \right) \simeq 1.
-\end{equation}
-$$</p>
-<p>The symbol $s_m$ is used as it&#39;s the <em>(measured) slope</em> of the best fit line through the errors, as shown on the <a href="http://nbviewer.ipython.org/github/numerical-mooc/numerical-mooc/blob/master/lessons/01_phugoid/01_03_PhugoidFullModel.ipynb">original lesson</a>:</p>
-<p><img src="https://raw.githubusercontent.com/IanHawke/close-enough-balloons/master/images/slope1.png" alt="Image"></p>
-<h4 id="figure-1-convergence-test-plot-taken-from-the-original-lesson-">Figure 1. Convergence test plot taken from the original lesson.</h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The <a href="http://nbviewer.ipython.org/github/numerical-mooc/numerical-mooc/blob/master/lessons/01_phugoid/01_03_PhugoidFullModel.ipynb">original lesson</a> does precisely this comparison (using the phugoid model, with specific parameter values, and $\dt = 0.001$), finding a measured slope $s_m = 1.014$. Is this <em>close enough</em> to 1?</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="TL;DR:-Answer">TL;DR: Answer<a class="anchor-link" href="#TL;DR:-Answer">&#182;</a></h2>
-</div>
-</div>
-</div>
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Answer<strong>s</strong></p>
+                <p>New journals appear all the time, and few are worth paying attention to. When the <a href="http://joss.theoj.org/">Journal of Open Source Software</a> (<a href="https://twitter.com/JOSS_TheOJ">JOSS</a>) launched in mid-May, a few things made it stand out.</p>
+<p>First, it's specifically for scientific <em>code</em>, an area that's been problematic for many journals for a long time. Second, it's an <a href="http://www.nature.com/news/open-journals-that-piggyback-on-arxiv-gather-momentum-1.19102">overlay journal</a>, in this case piggybacking on <a href="https://github.com/">GitHub</a>, which is a (fairly) new and interesting development for open scientific publishing. And finally, it <a href="http://joss.theoj.org/about#author_guidelines">suggests that</a></p>
+<blockquote>
+<p>...we expect that it should take less than an hour to prepare and submit your paper to JOSS.</p>
+</blockquote>
+<p>There's a challenge to be tried.</p>
+<h2>The paper</h2>
+<p>So, less than a week after the journal launched, we decided to give it a try. Now that <a href="http://joss.theoj.org/papers/10.21105/joss.00016">our paper</a> has <a href="https://github.com/openjournals/joss-reviews/issues/16">been accepted</a> we can confirm that the total time writing the paper was under an hour: roughly half an hour for the original paper, and twenty minutes for the revision.</p>
+<p>What's the trick? Well, it's like running a marathon in under three hours: once you've run the first 26 miles in under two, doing the final 385 yards in under an hour isn't a problem.</p>
+<p>The point here, that JOSS makes explicit, is that a "code paper" is, in large part, advertising the existence, documentation, and tests of the code. These are <em>essential</em> things that shouldn't need an academic journal paper: they should be part of good scientific practice. Running the first 26 miles is getting the code and all the essential best practice parts in place: the final 385 yards is a brief paper advertising the steps you took.</p>
+<h2>The steps in brief</h2>
+<p>So, what are the steps that we took that made writing the paper so simple?</p>
 <ol>
-<li><a href="http://ianhawke.github.io/blog/close-enough-part-1.html"><em>I don&#39;t care about the algorithm: I just want the answer to be right</em></a>: $0.585 \lesssim s_m \lesssim 1.585$ is close enough for Euler&#39;s method.</li>
-<li><a href="http://ianhawke.github.io/blog/close-enough-part-2.html"><em>I don&#39;t care about the answer: I just want the algorithm behaviour to be right</em></a>: $s_m=1.014$ with $\dt=0.001$ is close enough if $1 \le s_m \le 1.0093$ with $\dt=0.0005$.</li>
-<li><a href="http://ianhawke.github.io/blog/close-enough-part-3.html"><em>I don&#39;t care about the behaviour: I just want to know I&#39;ve implemented Euler&#39;s method</em></a>: measure the local truncation error instead, and check <em>both</em> the convergence rate <em>and</em> the leading order constant. $s_m$ by itself is useless.</li>
+<li>Have an idea for a scientific code.</li>
+<li>Make the code publicly available.</li>
+<li>Give the code an open license.</li>
+<li>Write tests for the code, using continuous integration, that covers all key parts.</li>
+<li>Document the code, with plenty of examples, publicly hosted, being clear about what the code can do, and how fast.</li>
+<li>Make sure the code is easy to install.</li>
+<li>Release the code through an archiving service.</li>
 </ol>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="And-yet-more">And yet more<a class="anchor-link" href="#And-yet-more">&#182;</a></h2>
-</div>
-</div>
-</div>
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The accuracy of the convergence rate was just one small point in <a href="http://software-carpentry.org/blog/2014/10/why-we-dont-teach-testing.html">Greg&#39;s original post</a>. The more substantial question was on testing a &quot;real&quot; code, such as <a href="http://benchmarksgame.alioth.debian.org/u32/program.php?test=nbody&amp;lang=python3&amp;id=1">this n-body simulation code</a>. To illustrate how far you can go with the approaches described above, <a href="http://ianhawke.github.io/blog/close-enough-part-4.html">here&#39;s my attempt at testing that code</a>.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h6 id="Acknowledgements">Acknowledgements<a class="anchor-link" href="#Acknowledgements">&#182;</a></h6>
-</div>
-</div>
-</div>
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Aside from the obvious debts to Lorena Barba and Greg Wilson, both for starting this off and for later comments, I&#39;ve also benefitted from comments from and discussions with Hans Fangohr and Ashwin Srinath.</p>
-</div>
-</div>
-</div></p>
-<hr />
-<p>You can <a href="http://IanHawke.github.io/blog/notebooks/00-Close-Enough-Post-Overall.ipynb">download this notebook</a>.</p>
+<h2>The steps at length</h2>
+<h3>The idea</h3>
+<p>This is sometimes the hard part, as most scientists can't get their ideas from the <a href="https://books.google.co.uk/books?id=dYvIAAAAQBAJ&amp;pg=PT162&amp;lpg=PT162&amp;dq=get+ideas+from+old+lady+schenectady+harlan+ellison&amp;source=bl&amp;ots=SqtFK2b2FB&amp;sig=6lkC1JaCNRDe6NAFyZp2AYkbXY4&amp;hl=en&amp;sa=X&amp;ved=0ahUKEwiviurV54fNAhXII8AKHfplASIQ6AEIJTAB#v=onepage&amp;q=get%20ideas%20from%20old%20lady%20schenectady%20harlan%20ellison&amp;f=false">little old lady from Schenectady</a>. In our case, we needed a test case for a different project we were working on. The code rapidly spiralled from a short script to something rather more complex, and became a test case for much of what follows.</p>
+<h3>Making it public</h3>
+<p>Cloud based version control repositories are the easiest way to do this for now. We used <a href="https://github.com/">GitHub</a> pretty much <a href="https://github.com/harpolea/r3d2/commit/c13c3ebbe18a2c12a0d856b0425bfe4890c093df">from the start</a>; with GitHub now offering private repositories to academics, it's straightforward to start private and shift public for release.</p>
+<h3>Give the code an open license</h3>
+<p>When you create a new repository GitHub <a href="https://help.github.com/articles/open-source-licensing/">asks what license you want to give it</a>. In our case we initially forgot (bad mistake), but updated to the <a href="http://choosealicense.com/licenses/mit/">MIT license</a> shortly after submission. Note that <a href="http://joss.theoj.org/about#content_license">JOSS does specify</a> the license of the papers, but you must specify the license for your code in advance.</p>
+<h3>Write tests</h3>
+<p>We were working with Python for <a href="https://github.com/harpolea/r3d2">our code</a>, so could use a standard, and simple, unit testing framework. We chose <a href="http://nose.readthedocs.io/en/latest/">nose</a> (as one of us had used it before). This ensured that the results matched existing codes in certain simple cases that could be directly compared, and could be used for regression tests in more complex cases.</p>
+<p>With a modern testing framework like this, it's very useful to tie the testing into the GitHub version control using <em>continuous integration</em>. For this we used <a href="https://travis-ci.org/harpolea/r3d2">Travis</a> which directly integrates with GitHub. This has the large advantage of rapidly testing the code on many versions of Python, for every commit or pull request. It had the downside of needing some fiddling to make work, as seen by the <a href="https://github.com/harpolea/r3d2/blob/master/.travis.yml">history of the <code>.travis.yml</code> file</a>.</p>
+<p>To check <em>how much</em> of the code we were actually testing, we could link GitHub and Travis to a code coverage checker - here it was <a href="https://codecov.io/github/harpolea/r3d2?branch=master">codecov.io</a>. Here the key was to work out what we <em>shouldn't</em> worry about testing - in our case, the plotting code was inessential - to focus on getting the science code right. The exclusions are managed through the <a href="https://github.com/harpolea/r3d2/blob/master/.coveragerc"><code>.coveragerc</code> file</a>.</p>
+<h3>Document the code</h3>
+<h4>README</h4>
+<p>The top level <a href="https://github.com/harpolea/r3d2/blob/master/README.rst">README</a> needs to cover a lot of ground. Most important are what the code is meant to do, how to get and install it, how to use it, and how to get support. Installation will come later. In our case, support and contributions is all dealt with by <a href="https://guides.github.com/features/issues/">GitHub issues</a>. The purpose of the code should be the focus, particularly as this brief, punchy introduction should closely mirror the content of the paper for JOSS!</p>
+<h4>Examples</h4>
+<p>When writing the code we were (and still are) planning on using it to produce tests for another project and paper. This required a broad range of examples, most of which were best illustrated by examples using the code directly. As it's a Python code it had been specifically designed to work within <a href="http://jupyter.org/">Jupyter notebooks</a>, so that modifications to examples could be rapidly displayed. The documentation was originally written directly into Jupyter notebooks with the intention of <em>directly converting</em> the text and figures into a later paper.</p>
+<p>This had a specific advantage when producing documentation for the code: Jupyter notebooks are now so popular that there's many tools that directly convert them into useful online forms. The first, central tool is <a href="http://www.sphinx-doc.org/en/stable/"><code>sphinx</code></a>, which is used to generate documentation for many projects, particularly those based on Python. Once sphinx was setup, we could then use <a href="http://nbsphinx.readthedocs.io/en/0.2.8/"><code>nbsphinx</code></a>, which directly converts Jupyter notebooks to sphinx documentation. This means creating documentation with up-to-date examples is simple: write the code and accompanying text into a Jupyter notebook, and <code>nbsphinx</code> will run it automatically to produce the documentation.</p>
+<p>To clearly host the documentation online there is another key integration with GitHub: <a href="http://readthedocs.org/">Read the Docs</a>. If you have <code>sphinx</code> documentation in a GitHub project then Read the Docs will host it, giving automatically generated, clean <a href="http://r3d2.readthedocs.io/en/latest/?badge=latest">HTML documentation</a>, with the option to generate <a href="https://media.readthedocs.org/pdf/r3d2/latest/r3d2.pdf">PDF</a> and <a href="http://readthedocs.org/projects/r3d2/downloads/epub/latest/">epub</a> documents if required. Just to note: the documentation on Read the Docs was something the reviewer <a href="https://github.com/openjournals/joss-reviews/issues/16#issuecomment-221051899">particularly liked</a>.</p>
+<p>However, there are a few pain points that should be noted here. A minor one is the inclusion of mathematics in the documentation: to make this show up cleanly in the epub version requires using the <code>mathpng</code> extension, (see eg <a href="https://github.com/IanHawke/maths-with-python/commit/2c67152263d47ad63409a2ba919488a3b55fa060">this commit</a> for <a href="http://maths-with-python.readthedocs.io/en/latest/">this set of documentation</a>) which doesn't display as nicely online. A more important issue is that getting the documentation to build on Read the Docs can be very painful: we still do not have a robust, reliable build process, as it often "randomly" fails.</p>
+<h4>Code API</h4>
+<p>Finally, remember to document the internals of the code. This was another place we slipped up initially, but is particularly important when people want to contribute and extend your code. Sticking to a convention is useful, as it usually means that IDEs can find and nicely format your internal documentation. We chose <a href="https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt"><code>numpydoc</code></a>, following <a href="http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html">standard examples</a>, as we've used it in the past.</p>
+<h3>Installation</h3>
+<p>There is nothing as frustrating as finding a code that may solve your problem, but having to spend hours or days trying to install it just to test it out. For plain Python code it's usually fairly simple to test something out, but it can be made nearly seamless by using <a href="https://pypi.python.org/pypi">PyPI</a>. There are <a href="https://docs.python.org/3.1/distutils/uploading.html">many</a> <a href="http://peterdowns.com/posts/first-time-with-pypi.html">example</a> <a href="https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/">tutorials</a> of how to upload your package to PyPI, and it's definitely worth the time to experiment with this to ease the installation pain for your users, and for yourself.</p>
+<p>Once you've decided on an installation route, make sure to document this clearly in the top level README and the start of the documentation. It's important to get the dependencies in there!</p>
+<h3>Release the code</h3>
+<p>Code changes to fix bugs and to keep track of changes in its dependencies. However, a scientific code must be reproducible, so the original version associated with the paper must be stored. With GitHub this can be done via an integration with <a href="https://zenodo.org/">Zenodo</a>, by creating a <a href="https://help.github.com/articles/creating-releases/"><em>release</em></a>. In addition to giving you a fixed, archived version of the code, it also gives you a <a href="https://zenodo.org/badge/latestdoi/21891/harpolea/r3d2">DOI</a> to refer to it by.</p>
+<h2>Summary</h2>
+<p>There's a lot going on in scientific publishing right now, and a lot of questions about how papers and journals of the future should look. An important question is whether the requirements and incentives of producing papers for "standard" journals are aligned for modern scientific best practices. This is an area where <a href="http://joss.theoj.org/">JOSS</a> stands out: it has explicitly set out to reward good scientific coding practice with the key incentive - a publication. It will be interesting to see how this will evolve, and if journals in other areas can follow suit.</p>
             </div>
             <!-- /.entry-content -->
-<section class="well" id="related-posts">
-    <h4>Part 1 of the Close_Enough series</h4>
-       <h5>Next articles</h5>
-       <ul>
-           <li><a href="http://IanHawke.github.io/blog/close-enough-part-1.html">Close Enough Part 1</a></li>
-           <li><a href="http://IanHawke.github.io/blog/close-enough-part-2.html">Close Enough Part 2</a></li>
-           <li><a href="http://IanHawke.github.io/blog/close-enough-part-3.html">Close Enough Part 3</a></li>
-           <li><a href="http://IanHawke.github.io/blog/close-enough-part-4.html">Close Enough Part 4</a></li>
-       </ul>
-</section>
     <hr/>
     <section class="comments" id="comments">
         <h2>Comments</h2>
@@ -424,8 +316,8 @@ $$</p>
             /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
             var disqus_shortname = 'ianhawkeblog'; // required: replace example with your forum shortname
 
-                    var disqus_identifier = 'close-enough';
-                var disqus_url = 'http://IanHawke.github.io/blog/close-enough.html';
+                    var disqus_identifier = 'how-to-write-an-academic-paper-in-under-an-hour';
+                var disqus_url = 'http://IanHawke.github.io/blog/how-to-write-an-academic-paper-in-under-an-hour.html';
 
             var disqus_config = function () {
                 this.language = "en";
